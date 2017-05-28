@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+
+require 'roll2exif'
+# This file intentionally left (almost) blank

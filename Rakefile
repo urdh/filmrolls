@@ -1,7 +1,7 @@
-require 'rake/testtask'
+require('rake/testtask')
 
 Rake::TestTask.new do |t|
   t.libs << 'test'
 end
 
-task default: %w[test]
+task(default: %w[test])

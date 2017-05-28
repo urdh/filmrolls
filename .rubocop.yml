@@ -1,0 +1,12 @@
+AllCops:
+  EnabledByDefault: true
+  TargetRubyVersion: 2.4
+
+Style/Copyright:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/MissingElse:
+  Enabled: false

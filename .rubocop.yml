@@ -10,3 +10,6 @@ Style/FrozenStringLiteralComment:
 
 Style/MissingElse:
   Enabled: false
+
+Style/MethodCallWithArgsParentheses:
+  Enabled: false

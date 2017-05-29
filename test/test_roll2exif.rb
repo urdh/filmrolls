@@ -1,5 +1,5 @@
 if ENV['CI']
-  require('codacy-coverage')
+  require 'codacy-coverage'
   Codacy::Reporter.start
 end
 

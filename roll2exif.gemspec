@@ -1,4 +1,4 @@
-require('rake')
+require 'rake'
 
 Gem::Specification.new do |s|
   s.name        = 'roll2exif'
@@ -20,12 +20,13 @@ Gem::Specification.new do |s|
   s.bindir      = 'bin'
   s.executables = 'roll2exif'
 
-  s.add_dependency('exiftool', ['~> 1.1'])
-  s.add_dependency('exiftool_vendored', ['~> 10.49'])
+  s.add_dependency 'exiftool', ['~> 1.1']
+  s.add_dependency 'exiftool_vendored', ['~> 10.49']
 
-  s.add_development_dependency('rake', ['~> 12'])
-  s.add_development_dependency('bundler', ['~> 1.14'])
-  s.add_development_dependency('codacy-coverage', ['~> 1.1'])
+  s.add_development_dependency 'rake', ['~> 12']
+  s.add_development_dependency 'bundler', ['~> 1.14']
+  s.add_development_dependency 'codacy-coverage', ['~> 1.1']
+  s.add_development_dependency 'minitest', ['~> 5.8']
 
   if ENV['TRAVIS']
     s.version = "#{s.version}-alpha.#{ENV['TRAVIS_BUILD_NUMBER']}"

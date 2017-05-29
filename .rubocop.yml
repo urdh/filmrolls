@@ -13,3 +13,6 @@ Style/MissingElse:
 
 Style/MethodCallWithArgsParentheses:
   Enabled: false
+
+Rails:
+  Enabled: false

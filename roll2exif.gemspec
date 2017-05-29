@@ -22,11 +22,14 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'exiftool', ['~> 1.1']
   s.add_dependency 'exiftool_vendored', ['~> 10.49']
+  s.add_dependency 'nokogiri', ['~> 1.7']
+  s.add_dependency 'geokit', ['~> 1.11']
 
   s.add_development_dependency 'rake', ['~> 12']
   s.add_development_dependency 'bundler', ['~> 1.14']
   s.add_development_dependency 'codacy-coverage', ['~> 1.1']
   s.add_development_dependency 'minitest', ['~> 5.8']
+  s.add_development_dependency 'minitest-reporters', ['~> 1.1']
 
   if ENV['TRAVIS']
     s.version = "#{s.version}-alpha.#{ENV['TRAVIS_BUILD_NUMBER']}"

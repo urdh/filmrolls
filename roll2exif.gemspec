@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.bindir      = 'bin'
   s.executables = 'roll2exif'
 
-  s.add_dependency 'exiftool', ['~> 1.1']
+  s.add_dependency 'mini_exiftool', ['~> 2.8']
   s.add_dependency 'exiftool_vendored', ['~> 10.49']
   s.add_dependency 'nokogiri', ['~> 1.7']
   s.add_dependency 'geokit', ['~> 1.11']

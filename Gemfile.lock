@@ -2,10 +2,12 @@ PATH
   remote: .
   specs:
     roll2exif (0.0.0)
+      executable (~> 1.2)
       exiftool_vendored (~> 10.49)
       geokit (~> 1.11)
       mini_exiftool (~> 2.8)
       nokogiri (~> 1.7)
+      rainbow (~> 2.2)
 
 GEM
   remote: https://rubygems.org/
@@ -15,6 +17,7 @@ GEM
     codacy-coverage (1.1.6)
       simplecov
     docile (1.1.5)
+    executable (1.2.1)
     exiftool (1.1.0)
       json
     exiftool_vendored (10.49.0)
@@ -31,6 +34,8 @@ GEM
       ruby-progressbar
     nokogiri (1.7.2)
       mini_portile2 (~> 2.1.0)
+    rainbow (2.2.2)
+      rake
     rake (12.0.0)
     ruby-progressbar (1.8.1)
     simplecov (0.14.1)

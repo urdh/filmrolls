@@ -23,8 +23,11 @@ command :list do |c|
     filename = args.shift
     abort 'Missing xml-file argument.' if filename.nil?
 
-    xml = File.read(filename) rescue nil
-    abort "Could not read XML input from `#{filename}`." if xml.nil?
+    begin
+      xml = File.read(filename)
+    rescue SystemCallError
+      abort "Could not read XML input from `#{filename}`."
+    end
 
     rolls =
       Roll2Exif::FilmRolls.load(xml)[:rolls].map do |roll|

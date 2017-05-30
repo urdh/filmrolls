@@ -6,18 +6,18 @@ module Roll2Exif
   module FilmRolls
     class Parser
       def self.load(io)
-          doc = Nokogiri::XML(io)
-          doc.remove_namespaces!
-          {
-            cameras:
-              doc.xpath('/data/cameras/camera').map { |n| load_camera(n) },
-            lenses:
-              doc.xpath('/data/lenses/lens').map { |n| load_lens(n) },
-            accessories:
-              doc.xpath('/data/accessories/accessory').map { |n| load_accessory(n) },
-            rolls:
-              doc.xpath('/data/filmRolls/filmRoll').map { |n| load_filmroll(n) }
-          }
+        doc = Nokogiri::XML(io)
+        doc.remove_namespaces!
+        {
+          cameras:
+            doc.xpath('/data/cameras/camera').map { |n| load_camera(n) },
+          lenses:
+            doc.xpath('/data/lenses/lens').map { |n| load_lens(n) },
+          accessories:
+            doc.xpath('/data/accessories/accessory').map { |n| load_accessory(n) },
+          rolls:
+            doc.xpath('/data/filmRolls/filmRoll').map { |n| load_filmroll(n) }
+        }
       end
 
       class << self
@@ -35,7 +35,6 @@ module Roll2Exif
           node.text
         end
 
-        public # TODO
         def load_filmroll(node)
           {
             id: node.at_xpath('./note').text,
@@ -48,7 +47,6 @@ module Roll2Exif
           }
         end
 
-        public # TODO
         def load_frame(node)
           {
             lens: node.at_xpath('./lens').text,

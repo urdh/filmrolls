@@ -3,77 +3,72 @@ require 'date'
 require 'geokit'
 
 module Roll2Exif
-  class Frame
-    attr_accessor :lens, :aperture, :shutter_speed, :compensation,
-                  :accessory, :date, :note, :position
+  module FilmRolls
+    class Parser
+      def self.load(io)
+          doc = Nokogiri::XML(io)
+          doc.remove_namespaces!
+          {
+            cameras:
+              doc.xpath('/data/cameras/camera').map { |n| load_camera(n) },
+            lenses:
+              doc.xpath('/data/lenses/lens').map { |n| load_lens(n) },
+            accessories:
+              doc.xpath('/data/accessories/accessory').map { |n| load_accessory(n) },
+            rolls:
+              doc.xpath('/data/filmRolls/filmRoll').map { |n| load_filmroll(n) }
+          }
+      end
 
-    def initialize(params)
-      if params.is_a? Nokogiri::XML::Node
-        self.lens = params.at_xpath("./*[local-name()='lens']").text
-        self.aperture =
-          params.at_xpath("./*[local-name()='aperture']").text.to_f
-        self.shutter_speed =
-          params.at_xpath("./*[local-name()='shutterSpeed']").text.to_r
-        self.compensation =
-          params.at_xpath("./*[local-name()='compensation']").text.to_f
-        self.accessory = params.at_xpath("./*[local-name()='accessory']").text
-        self.date =
-          DateTime.iso8601(params.at_xpath("./*[local-name()='date']").text)
-        self.note = params.at_xpath("./*[local-name()='note']").text
-        self.position = Geokit::LatLng.new(
-          params.at_xpath("./*[local-name()='latitude']").text.to_f,
-          params.at_xpath("./*[local-name()='longitude']").text.to_f
-        )
-      else
-        params.each { |key, value| public_send "#{key}=", value }
+      class << self
+        private
+
+        def load_camera(node)
+          node.text
+        end
+
+        def load_lens(node)
+          node.text
+        end
+
+        def load_accessory(node)
+          node.text
+        end
+
+        public # TODO
+        def load_filmroll(node)
+          {
+            id: node.at_xpath('./note').text,
+            film: node.at_xpath('./title').text,
+            speed: node.at_xpath('./speed').text.to_i,
+            camera: node.at_xpath('./camera').text,
+            load: DateTime.iso8601(node.at_xpath('./load').text),
+            unload: DateTime.iso8601(node.at_xpath('./unload').text),
+            frames: node.xpath('./frames/frame').map { |n| load_frame(n) }
+          }
+        end
+
+        public # TODO
+        def load_frame(node)
+          {
+            lens: node.at_xpath('./lens').text,
+            aperture: node.at_xpath('./aperture').text.to_f,
+            shutter_speed: node.at_xpath('./shutterSpeed').text.to_r,
+            compensation: node.at_xpath('./compensation').text.to_f,
+            accessory: node.at_xpath('./accessory').text,
+            date: DateTime.iso8601(node.at_xpath('./date').text),
+            note: node.at_xpath('./note').text,
+            position: Geokit::LatLng.new(
+              node.at_xpath('./latitude').text.to_f,
+              node.at_xpath('./longitude').text.to_f
+            )
+          }
+        end
       end
     end
-  end
 
-  class Roll
-    attr_accessor :id, :film, :speed, :camera, :load, :unload, :frames
-
-    def initialize(params)
-      if params.is_a? Nokogiri::XML::Node
-        self.id = params.at_xpath("./*[local-name()='note']").text
-        self.film = params.at_xpath("./*[local-name()='title']").text
-        self.speed = params.at_xpath("./*[local-name()='speed']").text.to_i
-        self.camera = params.at_xpath("./*[local-name()='camera']").text
-        self.load =
-          DateTime.iso8601(params.at_xpath("./*[local-name()='load']").text)
-        self.unload =
-          DateTime.iso8601(params.at_xpath("./*[local-name()='unload']").text)
-        self.frames =
-          params.xpath(
-            "./*[local-name()='frames']/*[local-name()='frame']"
-          ).map { |frame| Frame.new(frame) }
-      else
-        params.each { |key, value| public_send "#{key}=", value }
-      end
-    end
-  end
-
-  class << self
-    def XML(text)
-      doc = Nokogiri::XML(text)
-      {
-        cameras: doc.xpath(
-          '/ns:data/ns:cameras/ns:camera',
-          'ns' => 'http://www.w3schools.com'
-        ).map(&:text),
-        lenses: doc.xpath(
-          '/ns:data/ns:lenses/ns:lens',
-          'ns' => 'http://www.w3schools.com'
-        ).map(&:text),
-        accessories: doc.xpath(
-          '/ns:data/ns:accessories/ns:accessory',
-          'ns' => 'http://www.w3schools.com'
-        ).map(&:text),
-        rolls: doc.xpath(
-          '/ns:data/ns:filmRolls/ns:filmRoll',
-          'ns' => 'http://www.w3schools.com'
-        ).map { |roll| Roll.new(roll) }
-      }
+    def self.load(io)
+      Parser.load(io)
     end
   end
 end

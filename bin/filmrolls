@@ -27,7 +27,7 @@ command :list do |c|
     abort "Could not read XML input from `#{filename}`." if xml.nil?
 
     rolls =
-      Roll2Exif::XML(xml)[:rolls].map do |roll|
+      Roll2Exif::FilmRolls.load(xml)[:rolls].map do |roll|
         roll = roll.to_h
         roll[:frames] = roll[:frames].length
       end

@@ -4,7 +4,7 @@ require 'roll2exif/filmrolls'
 
 describe Roll2Exif do
   let(:data) do
-    Roll2Exif::XML(
+    Roll2Exif::FilmRolls.load(
       <<-EOF
         <?xml version="1.0" encoding="UTF-8"?>
         <data xmlns="http://www.w3schools.com"
@@ -45,10 +45,10 @@ describe Roll2Exif do
   end
 end
 
-describe Roll2Exif::Roll do
+describe Roll2Exif do
   let(:roll) do
-    Roll2Exif::Roll.new(
-      Nokogiri::XML(
+    Roll2Exif::FilmRolls::Parser.load_filmroll(
+      Nokogiri::XML.fragment(
         <<-EOF
           <filmRoll>
             <title>Ilford Delta 100</title>
@@ -66,30 +66,30 @@ describe Roll2Exif::Roll do
 
   describe 'after deserialization from XML' do
     it 'should have the expected roll id' do
-      roll.id.must_equal 'A0012'
+      roll[:id].must_equal 'A0012'
     end
     it 'should have the expected film type' do
-      roll.film.must_equal 'Ilford Delta 100'
+      roll[:film].must_equal 'Ilford Delta 100'
     end
     it 'should have the expected film speed' do
-      roll.speed.must_equal 100
+      roll[:speed].must_equal 100
     end
     it 'should have the expected camera type' do
-      roll.camera.must_equal 'Voigtländer Bessa R2M'
+      roll[:camera].must_equal 'Voigtländer Bessa R2M'
     end
     it 'should have the expected load date' do
-      roll.load.must_equal DateTime.new(2016, 3, 28, 15, 16, 36, '+00:00')
+      roll[:load].must_equal DateTime.new(2016, 3, 28, 15, 16, 36, '+00:00')
     end
     it 'should have the expected unload date' do
-      roll.unload.must_equal DateTime.new(2016, 5, 21, 14, 13, 15, '+00:00')
+      roll[:unload].must_equal DateTime.new(2016, 5, 21, 14, 13, 15, '+00:00')
     end
   end
 end
 
-describe Roll2Exif::Frame do
+describe Roll2Exif do
   let(:frame) do
-    Roll2Exif::Frame.new(
-      Nokogiri::XML(
+    Roll2Exif::FilmRolls::Parser.load_frame(
+      Nokogiri::XML.fragment(
         <<-EOF
           <frame>
             <lens>Color Skopar 35/2.5 Pancake II</lens>
@@ -110,28 +110,28 @@ describe Roll2Exif::Frame do
 
   describe 'after deserialization from XML' do
     it 'should have the expected lens type' do
-      frame.lens.must_equal 'Color Skopar 35/2.5 Pancake II'
+      frame[:lens].must_equal 'Color Skopar 35/2.5 Pancake II'
     end
     it 'should have the expected aperture' do
-      frame.aperture.must_equal 5.6
+      frame[:aperture].must_equal 5.6
     end
     it 'should have the expected shutter speed' do
-      frame.shutter_speed.must_equal Rational(1, 500)
+      frame[:shutter_speed].must_equal Rational(1, 500)
     end
     it 'should have the expected compensation' do
-      frame.compensation.must_equal 0.0
+      frame[:compensation].must_equal 0.0
     end
     it 'should have the expected accessory type' do
-      frame.accessory.must_equal ''
+      frame[:accessory].must_equal ''
     end
     it 'should have the expected date' do
-      frame.date.must_equal DateTime.new(2016, 5, 13, 14, 12, 40, '+00:00')
+      frame[:date].must_equal DateTime.new(2016, 5, 13, 14, 12, 40, '+00:00')
     end
     it 'should have the expected note' do
-      frame.note.must_equal ''
+      frame[:note].must_equal ''
     end
     it 'should have the expected position' do
-      frame.position.must_equal Geokit::LatLng.new(57.700767, 11.953715)
+      frame[:position].must_equal Geokit::LatLng.new(57.700767, 11.953715)
     end
   end
 end

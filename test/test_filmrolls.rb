@@ -1,7 +1,9 @@
 require 'test_helper'
 require 'minitest/autorun'
-
+require 'roll2exif/frame'
+require 'roll2exif/roll'
 require 'roll2exif/xml'
+
 describe Roll2Exif do
   let(:data) do
     Roll2Exif::XML(
@@ -45,7 +47,6 @@ describe Roll2Exif do
   end
 end
 
-require 'roll2exif/roll'
 describe Roll2Exif::Roll do
   let(:roll) do
     Roll2Exif::Roll.new(
@@ -87,7 +88,6 @@ describe Roll2Exif::Roll do
   end
 end
 
-require 'roll2exif/frame'
 describe Roll2Exif::Frame do
   let(:frame) do
     Roll2Exif::Frame.new(
@@ -135,21 +135,5 @@ describe Roll2Exif::Frame do
     it 'should have the expected position' do
       frame.position.must_equal Geokit::LatLng.new(57.700767, 11.953715)
     end
-  end
-end
-
-require 'roll2exif/exiftool'
-describe Roll2Exif::Exiftool do
-  it 'has the correct (vendored) exiftool version' do
-    require 'exiftool_vendored/version'
-    vendored_version = ExiftoolVendored::VERSION
-    executable_version = Gem::Version.new(Roll2Exif::Exiftool.exiftool_version)
-
-    executable_version.must_equal vendored_version
-  end
-
-  it 'should be able to load EXIF tags from TIFF files' do
-    Roll2Exif::Exiftool.new('test/data/with-exif.tiff')
-    Roll2Exif::Exiftool.new('test/data/without-exif.tiff')
   end
 end

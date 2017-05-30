@@ -1,3 +1,3 @@
-module Roll2Exif
+module Filmrolls
   VERSION = '0.0.0'.freeze
 end

@@ -1,7 +1,7 @@
 require 'exiftool_vendored'
 require 'mini_exiftool'
 
-module Roll2Exif
+module Filmrolls
   class Exiftool < MiniExiftool
     self.command = ExiftoolVendored.path_to_exiftool
 

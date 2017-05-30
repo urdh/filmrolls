@@ -1,13 +1,13 @@
 #!/usr/bin/env ruby
 require 'rubygems'
 require 'commander/import'
-require 'roll2exif'
+require 'filmrolls'
 
 begin
-  GEMSPEC  = Gem::Specification.find_by_name('roll2exif')
+  GEMSPEC  = Gem::Specification.find_by_name('filmrolls')
   SPECFILE = GEMSPEC.loaded_from
 rescue Gem::LoadError
-  SPECFILE = File.expand_path(File.dirname(__FILE__) + '/../roll2exif.gemspec')
+  SPECFILE = File.expand_path(File.dirname(__FILE__) + '/../filmrolls.gemspec')
   GEMSPEC  = Gem::Specification.load(SPECFILE)
 end
 
@@ -30,7 +30,7 @@ command :list do |c|
     end
 
     rolls =
-      Roll2Exif::FilmRolls.load(xml)[:rolls].map do |roll|
+      Filmrolls::FilmRolls.load(xml)[:rolls].map do |roll|
         roll = roll.to_h
         roll[:frames] = roll[:frames].length
       end

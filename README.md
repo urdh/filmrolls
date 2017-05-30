@@ -3,7 +3,7 @@
 [![Build Status](https://img.shields.io/travis/urdh/roll2exif/master.svg)][build-status]
 [![Code Quality](https://img.shields.io/codacy/grade/ad6e6ba15806436ea9cb80c41fc75fb0/master.svg)][codacy]
 [![Code Coverage](https://img.shields.io/codacy/coverage/ad6e6ba15806436ea9cb80c41fc75fb0/master.svg)][codacy]
-[![Gem](https://img.shields.io/gem/v/roll2exif.svg)][release]
+[![Gem](https://img.shields.io/gem/v/filmrolls.svg)][release]
 [![License](https://img.shields.io/github/license/urdh/roll2exif.svg)][license]
 [![Semantic Versioning](https://img.shields.io/badge/semver-2.0.0-blue.svg)][semver]
 
@@ -17,6 +17,6 @@ Eventually there will be some sort of [changelog][changelog] as well.
 
 [build-status]: https://travis-ci.org/urdh/roll2exif
 [codacy]: https://www.codacy.com/app/Sigurdhsson/roll2exif
-[release]: https://rubygems.org/gems/roll2exif
+[release]: https://rubygems.org/gems/filmrolls
 [license]: https://github.com/urdh/roll2exif/blob/master/LICENSE.md
 [changelog]: https://github.com/urdh/roll2exif/blob/master/CHANGELOG.md

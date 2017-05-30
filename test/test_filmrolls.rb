@@ -1,10 +1,10 @@
 require 'test_helper'
 require 'minitest/autorun'
-require 'roll2exif/filmrolls'
+require 'filmrolls/filmrolls'
 
-describe 'Roll2Exif::FilmRolls.load' do
+describe 'Filmrolls::FilmRolls.load' do
   let(:data) do
-    @output ||= Roll2Exif::FilmRolls.load(File.read('test/data/filmrolls.xml'))
+    @output ||= Filmrolls::FilmRolls.load(File.read('test/data/filmrolls.xml'))
   end
 
   describe 'the parser output' do

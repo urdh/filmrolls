@@ -20,7 +20,7 @@ script:
 
 deploy:
   provider: rubygems
-  gem: roll2exif
+  gem: filmrolls
   api_key:
     secure: "OH876NP4NPmsHqz0oCLD/TIqFDOcawzV7KyjqvuC6/uHAHW5thnYcBVyukeh3PBWf8olpHetoY1n9eE1os9hWXaPC0I75/fyDVJEXUUaD/Tcytyj28zaayLiOcXmyfNjoL7ONSERCvnk+KTBGGAC6qPTO9FoDOJP/MSbqLR3x+D3XD9t2NQJ/TV6FBRrDokUm1RLvrkRMr33tfJlnrW/6vGntlY1zp8kQKNFP47GnvvtewL+/MKP7yMCjx/y3avjfAtEQLig4xl547sarUCtwD/5FSUuVP0PXAFWFqha0jZPQ8NnrLTLiNv15IBTl/wfirLo74Qct24sukrCN4h4tlWALK5fxllgWVX8/kb0/slHPLMamTtLVDmP7iGRk0DKcJ5tQg6xCzAav8G9x2Xbk+MAZ65rt2ydUs9QTLxY6xovf6JuegvDfPjxAvXZluQL5m+3bgsbHMw9rkvKh2ofpsKfetMjOVYthjSQ6DGF6XXX9LO1bw/PEsiMlBklLRBa6h8fN+BWFAYmQk70GqClMzsFbvgiOCjyfp/BLhA0m2UZeE1z+m83wBbjlBHYXy6Ey5ObKKGr3y1d8f5LnigsvW5+Ugxhv7Sn6AcgKLSezTmRy8/7/Q7nM3f0qYvvjdodv8ECprPMsRTVRabBtWrplmFj5hXZ03SHegju85CZasY="
   on:

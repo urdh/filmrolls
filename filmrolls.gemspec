@@ -1,10 +1,10 @@
 $LOAD_PATH.push File.expand_path('../lib', __FILE__)
-require 'roll2exif/version'
+require 'filmrolls/version'
 require 'rake'
 
 Gem::Specification.new do |s|
-  s.name        = 'roll2exif'
-  s.version     = Roll2Exif::VERSION
+  s.name        = 'filmrolls'
+  s.version     = Filmrolls::VERSION
   s.summary     = 'Tag TIFF files with EXIF data extracted from XML data'
 
   s.author      = 'Simon Sigurdhsson'

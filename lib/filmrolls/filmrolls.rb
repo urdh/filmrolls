@@ -2,7 +2,7 @@ require 'nokogiri'
 require 'date'
 require 'geokit'
 
-module Roll2Exif
+module Filmrolls
   module FilmRolls
     class Parser
       def self.load(io)

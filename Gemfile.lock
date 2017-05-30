@@ -2,12 +2,12 @@ PATH
   remote: .
   specs:
     roll2exif (0.0.0)
-      executable (~> 1.2)
+      commander (~> 4.4)
       exiftool_vendored (~> 10.49)
       geokit (~> 1.11)
       mini_exiftool (~> 2.8)
       nokogiri (~> 1.7)
-      rainbow (~> 2.2)
+      terminal-table (~> 1.8)
 
 GEM
   remote: https://rubygems.org/
@@ -16,13 +16,15 @@ GEM
     builder (3.2.3)
     codacy-coverage (1.1.6)
       simplecov
+    commander (4.4.3)
+      highline (~> 1.7.2)
     docile (1.1.5)
-    executable (1.2.1)
     exiftool (1.1.0)
       json
     exiftool_vendored (10.49.0)
       exiftool (>= 0.7.0)
     geokit (1.11.0)
+    highline (1.7.8)
     json (2.1.0)
     mini_exiftool (2.8.0)
     mini_portile2 (2.1.0)
@@ -34,8 +36,6 @@ GEM
       ruby-progressbar
     nokogiri (1.7.2)
       mini_portile2 (~> 2.1.0)
-    rainbow (2.2.2)
-      rake
     rake (12.0.0)
     ruby-progressbar (1.8.1)
     simplecov (0.14.1)
@@ -43,6 +43,9 @@ GEM
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.1)
+    terminal-table (1.8.0)
+      unicode-display_width (~> 1.1, >= 1.1.1)
+    unicode-display_width (1.2.1)
 
 PLATFORMS
   ruby

@@ -1,3 +1,0 @@
-#!/usr/bin/env ruby
-require 'roll2exif'
-Roll2Exif.execute(ARGV)

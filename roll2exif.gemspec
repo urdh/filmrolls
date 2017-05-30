@@ -20,14 +20,14 @@ Gem::Specification.new do |s|
 
   s.files       = FileList['lib/**', 'bin/*', '*.md', 'test/*'].to_a
   s.bindir      = 'bin'
-  s.executables = 'roll2exif'
+  s.executables = 'filmrolls'
 
   s.add_dependency 'mini_exiftool', ['~> 2.8']
   s.add_dependency 'exiftool_vendored', ['~> 10.49']
   s.add_dependency 'nokogiri', ['~> 1.7']
   s.add_dependency 'geokit', ['~> 1.11']
-  s.add_dependency 'executable', ['~> 1.2']
-  s.add_dependency 'rainbow', ['~> 2.2']
+  s.add_dependency 'commander', ['~> 4.4']
+  s.add_dependency 'terminal-table', ['~> 1.8']
 
   s.add_development_dependency 'rake', ['~> 12']
   s.add_development_dependency 'bundler', ['~> 1.14']

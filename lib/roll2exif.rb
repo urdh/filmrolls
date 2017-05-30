@@ -1,13 +1,8 @@
-require 'roll2exif/cli'
+require 'roll2exif/version'
+require 'roll2exif/exiftool'
+require 'roll2exif/xml'
+require 'roll2exif/roll'
+require 'roll2exif/frame'
 
 module Roll2Exif
-  class << self
-    def execute(args)
-      begin
-        Roll2ExifCli.execute(args)
-      rescue NoMethodError
-        Roll2ExifCli.new.help!
-      end
-    end
-  end
 end

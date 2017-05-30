@@ -1,0 +1,42 @@
+#!/usr/bin/env ruby
+require 'rubygems'
+require 'commander/import'
+require 'roll2exif'
+
+begin
+  GEMSPEC  = Gem::Specification.find_by_name('roll2exif')
+  SPECFILE = GEMSPEC.loaded_from
+rescue Gem::LoadError
+  SPECFILE = File.expand_path(File.dirname(__FILE__) + '/../roll2exif.gemspec')
+  GEMSPEC  = Gem::Specification.load(SPECFILE)
+end
+
+program :version,     GEMSPEC.version.to_s
+program :description, GEMSPEC.summary
+
+command :list do |c|
+  c.syntax      = 'filmrolls list [options] xml-file'
+  c.summary     = 'List film rolls'
+  c.description = 'List ID and additional data for all film rolls in xml-file.'
+
+  c.action do |args, _options|
+    filename = args.shift
+    abort 'Missing xml-file argument.' if filename.nil?
+
+    xml = File.read(filename) rescue nil
+    abort "Could not read XML input from `#{filename}`." if xml.nil?
+
+    rolls =
+      Roll2Exif::XML(xml)[:rolls].map do |roll|
+        roll = roll.to_h
+        roll[:frames] = roll[:frames].length
+      end
+
+    unless rolls.empty?
+      require 'terminal-table'
+      head = rolls.first.keys.map(&:capitalize)
+      rows = rolls.map(&:values)
+      say Terminal::Table.new(headings: head, rows: rows)
+    end
+  end
+end

@@ -3,7 +3,7 @@ require 'date'
 require 'geokit'
 
 module Filmrolls
-  module FilmRolls
+  module XMLFormat
     class Parser
       def self.load(io)
         doc = Nokogiri::XML(io)

@@ -1,10 +1,10 @@
 require 'test_helper'
 require 'minitest/autorun'
-require 'filmrolls/filmrolls'
+require 'filmrolls/xmlformat'
 
-describe 'Filmrolls::FilmRolls.load' do
+describe 'Filmrolls::XMLFormat.load' do
   let(:data) do
-    @output ||= Filmrolls::FilmRolls.load(File.read('test/data/filmrolls.xml'))
+    @output ||= Filmrolls::XMLFormat.load(File.read('test/data/filmrolls.xml'))
   end
 
   describe 'the parser output' do

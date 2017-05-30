@@ -30,7 +30,7 @@ command :list do |c|
     end
 
     rolls =
-      Filmrolls::FilmRolls.load(xml)[:rolls].map do |roll|
+      Filmrolls::XMLFormat.load(xml)[:rolls].map do |roll|
         roll = roll.to_h
         roll[:frames] = roll[:frames].length
       end

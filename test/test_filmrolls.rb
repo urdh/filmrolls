@@ -27,7 +27,7 @@ describe 'Roll2Exif::FilmRolls.load' do
     end
 
     describe 'the film roll' do
-      let(:roll) { data[:rolls].first}
+      let(:roll) { data[:rolls].first }
 
       it 'should have the expected roll id' do
         roll[:id].must_equal 'A0012'

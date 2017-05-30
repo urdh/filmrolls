@@ -1,8 +1,6 @@
 require 'test_helper'
 require 'minitest/autorun'
-require 'roll2exif/frame'
-require 'roll2exif/roll'
-require 'roll2exif/xml'
+require 'roll2exif/filmrolls'
 
 describe Roll2Exif do
   let(:data) do

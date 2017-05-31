@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.author      = 'Simon Sigurdhsson'
   s.email       = 'Sigurdhsson@gmail.com'
-  s.homepage    = 'https://github.com/urdh/roll2exif'
+  s.homepage    = 'https://github.com/urdh/filmrolls'
   s.license     = 'ISC'
 
   s.description = <<-EOF

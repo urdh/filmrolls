@@ -18,9 +18,19 @@ Gem::Specification.new do |s|
     based on the information in these XML files.
   EOF
 
-  s.files       = FileList['lib/**', 'bin/*', '*.md', 'test/*'].to_a
+  s.files       = FileList['lib/**/*', 'bin/*', 'test/**/*', 'man/*',
+                           '*.md', 'Rakefile', 'filmrolls.gemspec'].to_a
+
   s.bindir      = 'bin'
-  s.executables = 'filmrolls'
+  s.executables = ['filmrolls']
+
+  s.require_paths = 'lib'
+  s.test_files    = FileList['test/*.rb']
+
+  s.has_rdoc      = true
+  s.rdoc_options  = [
+    '--line-numbers', '--inline-source', '--title', 'Film Rolls EXIF tagger'
+  ]
 
   s.add_dependency 'mini_exiftool', ['~> 2.8']
   s.add_dependency 'exiftool_vendored', ['~> 10.49']

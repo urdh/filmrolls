@@ -20,7 +20,7 @@ Rails:
 Metrics/BlockLength:
   Exclude:
     - test/*.rb
-    - roll2exif.gemspec
+    - '*.gemspec'
 
 Metrics/LineLength:
   Exclude:

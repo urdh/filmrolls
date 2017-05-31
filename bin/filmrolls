@@ -30,8 +30,11 @@ command :list do |c|
 
     rolls =
       Filmrolls::XMLFormat.load(xml)[:rolls].map do |roll|
-        roll = roll.to_h
-        roll[:frames] = roll[:frames].length
+        roll.merge(
+          frames: roll[:frames].length,
+          unload: roll[:unload].to_date,
+          load: roll[:load].to_date
+        )
       end
 
     unless rolls.empty?

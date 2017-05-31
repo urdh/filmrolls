@@ -14,19 +14,18 @@ end
 program :version,     GEMSPEC.version.to_s
 program :description, GEMSPEC.summary
 
+global_option '-r', '--rolls FILE', 'Film Rolls XML file (default: stdin)'
+
 command :list do |c|
-  c.syntax      = 'filmrolls list [options] xml-file'
+  c.syntax      = 'filmrolls list --rolls FILE'
   c.summary     = 'List film rolls'
   c.description = 'List ID and additional data for all film rolls in xml-file.'
 
-  c.action do |args, _options|
-    filename = args.shift
-    abort 'Missing xml-file argument.' if filename.nil?
-
+  c.action do |_args, options|
     begin
-      xml = File.read(filename)
-    rescue SystemCallError
-      abort "Could not read XML input from `#{filename}`."
+      xml = options.rolls.nil? ? $stdin.read : File.read(options.rolls)
+    rescue SystemCallError => err
+      abort "Could not read input XML: #{err.message}"
     end
 
     rolls =

@@ -13,6 +13,7 @@ end
 
 program :version,     GEMSPEC.version.to_s
 program :description, GEMSPEC.summary
+program :help_formatter, :compact
 
 global_option '-r', '--rolls FILE', 'Film Rolls XML file (default: stdin)'
 

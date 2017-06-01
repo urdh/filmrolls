@@ -1,8 +1,12 @@
 require 'rake/testtask'
+require 'rdoc/task'
 
-task :man do
+def gemspec
   require 'rubygems'
-  spec = Gem::Specification.load('filmrolls.gemspec')
+  @gemspec ||= Gem::Specification.load(
+    File.expand_path(File.dirname(__FILE__) + '/filmrolls.gemspec')
+  )
+end
 
   require 'ronn'
   man = Ronn.new(
@@ -13,6 +17,12 @@ task :man do
     manual: "Film Rolls EXIF tagger v#{spec.version}"
   )
   File.open('man/filmrolls.1', 'w') { |f| f.write man.to_roff }
+end
+
+RDoc::Task.new(:rdoc) do |r|
+  r.options = gemspec.rdoc_options
+  r.rdoc_files.include(gemspec.require_paths)
+  r.rdoc_files.include(gemspec.extra_rdoc_files)
 end
 
 Rake::TestTask.new do |t|

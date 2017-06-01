@@ -40,6 +40,7 @@ GEM
       mini_portile2 (~> 2.1.0)
     rake (12.0.0)
     rdiscount (2.2.0.1)
+    rdoc (4.3.0)
     ronn (0.7.3)
       hpricot (>= 0.8.2)
       mustache (>= 0.7.0)
@@ -64,6 +65,7 @@ DEPENDENCIES
   minitest (~> 5.8)
   minitest-reporters (~> 1.1)
   rake (~> 12)
+  rdoc (~> 4.2)
   ronn (~> 0.7)
 
 BUNDLED WITH

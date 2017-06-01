@@ -9,8 +9,8 @@
 
 This is a utility designed to read the XML files used by the [Film Rolls iOS app][film-rolls], and enable batch EXIF tagging of scanned negatives in TIFF format based on the information in these XML files.
 
-The gem is released under the [ISC license][license].
-Eventually there will be some sort of [changelog][changelog] as well.
+The gem is released under the [ISC license][LICENSE.md].
+Eventually there will be some sort of [changelog][CHANGELOG.md] as well.
 
 [film-rolls]: https://itunes.apple.com/se/app/film-rolls-app-for-film-photographers/id675626559
 [semver]: http://semver.org/spec/v2.0.0.html
@@ -18,5 +18,3 @@ Eventually there will be some sort of [changelog][changelog] as well.
 [build-status]: https://travis-ci.org/urdh/filmrolls
 [codacy]: https://www.codacy.com/app/Sigurdhsson/filmrolls
 [release]: https://rubygems.org/gems/filmrolls
-[license]: https://github.com/urdh/filmrolls/blob/master/LICENSE.md
-[changelog]: https://github.com/urdh/filmrolls/blob/master/CHANGELOG.md

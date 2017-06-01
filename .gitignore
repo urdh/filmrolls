@@ -51,3 +51,4 @@ build-iPhoneSimulator/
 
 # Generated files
 /man/*.[0-9]
+/html/

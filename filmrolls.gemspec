@@ -30,10 +30,12 @@ Gem::Specification.new do |s|
   s.require_paths = 'lib'
   s.test_files    = FileList['test/*.rb']
 
-  # TODO: include README.md and LICENSE.md in the rdoc?
-  s.has_rdoc      = true
-  s.rdoc_options  = [
-    '--line-numbers', '--inline-source', '--title', 'Film Rolls EXIF tagger'
+  s.has_rdoc         = true
+  s.extra_rdoc_files = %w[README.md LICENSE.md bin/filmrolls]
+  s.rdoc_options     = [
+    '--line-numbers', '--inline-source',
+    '--title', 'Film Rolls EXIF tagger',
+    '--main', 'README.md'
   ]
 
   s.add_dependency 'mini_exiftool', ['~> 2.8']
@@ -44,6 +46,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'terminal-table', ['~> 1.8']
 
   s.add_development_dependency 'rake', ['~> 12']
+  s.add_development_dependency 'rdoc', ['~> 4.2']
   s.add_development_dependency 'bundler', ['~> 1.14']
   s.add_development_dependency 'codacy-coverage', ['~> 1.1']
   s.add_development_dependency 'minitest', ['~> 5.8']

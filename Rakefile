@@ -25,12 +25,9 @@ RDoc::Task.new(:rdoc) do |r|
   r.rdoc_files.include(gemspec.extra_rdoc_files)
 end
 
-Rake::TestTask.new do |t|
-  t.libs << 'test'
-  t.test_files = FileList[
-    'test/test_exiftool.rb',
-    'test/test_xmlformat.rb'
-  ]
+Rake::TestTask.new(:test) do |t|
+  t.libs       = gemspec.require_paths + %w[test]
+  t.test_files = gemspec.test_files
 end
 
-task default: %w[test]
+task default: :test

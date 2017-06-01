@@ -18,17 +18,36 @@ Gem::Specification.new do |s|
     based on the information in these XML files.
   EOF
 
-  # TODO: don't generate the file list dynamically
-  s.files       = FileList['lib/**/*', 'bin/*', 'test/**/*', 'man/*',
-                           '*.md', 'Rakefile', 'filmrolls.gemspec'].to_a
+  s.files = %w[
+    filmrolls.gemspec
+    Rakefile
+    README.md
+    LICENSE.md
+    bin/filmrolls
+    man/filmrolls.1.ronn
+    lib/filmrolls.rb
+    lib/filmrolls/exiftool.rb
+    lib/filmrolls/version.rb
+    lib/filmrolls/xmlformat.rb
+    test/test_helper.rb
+    test/test_exiftool.rb
+    test/test_xmlformat.rb
+    test/data/filmrolls.xml
+    test/data/with-exif.tiff
+    test/data/without-exif.tiff
+  ]
   # TODO: how to generate the man page and inclue in the gem?
 
   s.bindir      = 'bin'
-  s.executables = ['filmrolls']
+  s.executables = %w[
+    filmrolls
+  ]
 
-  # TODO: don't generate the file list dynamically
   s.require_paths = 'lib'
-  s.test_files    = FileList['test/*.rb']
+  s.test_files    = %w[
+    test/test_exiftool.rb
+    test/test_xmlformat.rb
+  ]
 
   s.has_rdoc         = true
   s.extra_rdoc_files = %w[README.md LICENSE.md bin/filmrolls]

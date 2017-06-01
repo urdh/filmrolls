@@ -16,8 +16,9 @@ before_install:
 install:
   - bundle install
 script:
-  - bundle exec rake ronn rdoc
-  - bundle exec rake
+  - bundle exec rake rdoc
+  - bundle exec rake test
+  - bundle exec rake gem
 
 before_deploy:
   - bundle exec rake ronn

@@ -1,29 +1,31 @@
 require 'rake/testtask'
 require 'rdoc/task'
+require 'rubygems/package_task'
 
 def gemspec
-  require 'rubygems'
+  require 'rubygems/specification'
   @gemspec ||= Gem::Specification.load(
     File.expand_path(File.dirname(__FILE__) + '/filmrolls.gemspec')
   )
 end
 
-task :ronn do
+rule(/\.[0-9]$/ => [proc { |name| "#{name}.ronn" }]) do |task|
   require 'ronn'
-  gemspec.files.select { |p| p[/\.[0-9]$/] }.each do |manpage|
-    appname, section = File.basename(manpage).split('.')
-    next unless File.exist?("#{manpage}.ronn")
-    File.open(manpage, 'w') do |man|
-      man.write Ronn.new(
-        "#{manpage}.ronn",
-        name: appname,
-        section: section,
-        tagline: gemspec.summary,
-        manual: "#{gemspec.name} v#{gemspec.version}"
-      ).to_roff
-    end
+  appname, section = File.basename(task.name).split('.')
+  File.open(task.name, 'w') do |man|
+    man.write Ronn.new(
+      task.source,
+      name: appname,
+      section: section,
+      tagline: gemspec.summary,
+      manual: "#{gemspec.name} v#{gemspec.version}"
+    ).to_roff
   end
 end
+
+task ronn: gemspec.files.select { |f| f[/\.[0-9]$/] } {}
+
+Gem::PackageTask.new(gemspec) {}
 
 RDoc::Task.new(:rdoc) do |r|
   r.options = gemspec.rdoc_options

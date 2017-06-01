@@ -1,18 +1,9 @@
 #!/usr/bin/env ruby
-require 'rubygems'
 require 'commander/import'
 require 'filmrolls'
 
-begin
-  GEMSPEC  = Gem::Specification.find_by_name('filmrolls')
-  SPECFILE = GEMSPEC.loaded_from
-rescue Gem::LoadError
-  SPECFILE = File.expand_path(File.dirname(__FILE__) + '/../filmrolls.gemspec')
-  GEMSPEC  = Gem::Specification.load(SPECFILE)
-end
-
-program :version,     GEMSPEC.version.to_s
-program :description, GEMSPEC.summary
+program :version,     Filmrolls::VERSION
+program :description, 'Tag TIFF files with EXIF data extracted from XML data'
 program :help_formatter, :compact
 
 global_option '-r', '--rolls FILE', 'Film Rolls XML file (default: stdin)'

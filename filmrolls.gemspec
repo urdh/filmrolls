@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
     README.md
     LICENSE.md
     bin/filmrolls
-    man/filmrolls.1.ronn
+    man/filmrolls.1
     lib/filmrolls.rb
     lib/filmrolls/exiftool.rb
     lib/filmrolls/version.rb

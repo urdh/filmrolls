@@ -18,6 +18,8 @@ install:
 script:
   - bundle exec rake
 
+before_deploy:
+  - bundle exec rake ronn
 deploy:
   provider: rubygems
   gem: filmrolls

@@ -1,6 +1,13 @@
 AllCops:
   EnabledByDefault: true
   TargetRubyVersion: 2.4
+  Include:
+    - bin/*
+    - lib/**/*.rb
+    - test/*.rb
+    - '*.gemspec'
+    - Rakefile
+    - .simplecov
 
 Style/Copyright:
   Enabled: false

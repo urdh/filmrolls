@@ -67,6 +67,7 @@ DEPENDENCIES
   rake (~> 12)
   rdoc (~> 4.2)
   ronn (~> 0.7)
+  simplecov (~> 0.14)
 
 BUNDLED WITH
    1.15.0

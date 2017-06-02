@@ -1,5 +1,5 @@
 if ENV['CI']
-  require 'codacy/formatter'
+  require 'codacy-coverage'
   SimpleCov.formatter = Codacy::Formatter
 end
 

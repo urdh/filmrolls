@@ -5,7 +5,7 @@ end
 
 SimpleCov.start do
   load_profile  'test_frameworks'
-  command_name  "MiniTest"
+  command_name  'MiniTest'
   coverage_dir  'coverage'
   merge_timeout 3600
 

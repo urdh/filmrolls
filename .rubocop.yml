@@ -32,3 +32,8 @@ Metrics/BlockLength:
 Metrics/LineLength:
   Exclude:
     - test/*.rb
+
+Style/FileName:
+  Exclude:
+    - 'Rakefile'
+    - 'Gemfile'

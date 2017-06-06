@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
     bin/filmrolls
     man/filmrolls.1
     lib/filmrolls.rb
+    lib/filmrolls/cli.rb
     lib/filmrolls/exiftool.rb
     lib/filmrolls/version.rb
     lib/filmrolls/xmlformat.rb

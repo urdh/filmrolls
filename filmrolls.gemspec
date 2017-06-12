@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
     lib/filmrolls.rb
     lib/filmrolls/cli.rb
     lib/filmrolls/exiftool.rb
+    lib/filmrolls/negative.rb
     lib/filmrolls/version.rb
     lib/filmrolls/xmlformat.rb
     test/test_helper.rb

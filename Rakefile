@@ -24,7 +24,7 @@ rule(/\.[0-9]$/ => [proc { |name| "#{name}.ronn" }]) do |task|
 end
 
 desc 'Build all manual pages'
-task ronn: gemspec.files.select { |f| f[/\.[0-9]$/] } {}
+task ronn: gemspec.files.select { |f| f[/\.[0-9]$/] }
 
 Gem::PackageTask.new(gemspec) {}
 

@@ -12,27 +12,20 @@ module Filmrolls
 
       global_option '-r', '--rolls FILE', 'Film Rolls XML file (default: stdin)'
 
-      command :list do |c|
-        c.syntax      = 'filmrolls list [--rolls FILE]'
+      command 'list-rolls' do |c|
+        c.syntax      = 'filmrolls list-rolls [--rolls FILE]'
         c.summary     = 'List film rolls'
         c.description = 'List ID and additional data for all film rolls ' \
                         'in input.'
 
         c.action do |_args, options|
-          begin
-            xml = options.rolls.nil? ? $stdin.read : File.read(options.rolls)
-          rescue SystemCallError => err
-            abort "Could not read input XML: #{err.message}"
+          rolls = get_rolls(options.rolls).map do |roll|
+            roll.merge(
+              frames: roll[:frames].length,
+              unload: roll[:unload].to_date,
+              load: roll[:load].to_date
+            )
           end
-
-          rolls =
-            Filmrolls::XMLFormat.load(xml)[:rolls].map do |roll|
-              roll.merge(
-                frames: roll[:frames].length,
-                unload: roll[:unload].to_date,
-                load: roll[:load].to_date
-              )
-            end
 
           unless rolls.empty?
             require 'terminal-table'
@@ -53,6 +46,18 @@ module Filmrolls
 
         c.action do |_args, _options|
           raise NotImplementedError
+        end
+      end
+    end
+
+    class << self
+      private
+
+      def get_rolls(file)
+        begin
+          Filmrolls::XMLFormat.load(file.nil? ? $stdin.read : File.read(file))[:rolls]
+        rescue SystemCallError => err
+          abort "Could not read input XML: #{err.message}"
         end
       end
     end

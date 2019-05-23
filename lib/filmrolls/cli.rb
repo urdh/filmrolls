@@ -10,7 +10,9 @@ module Filmrolls
       program :description, 'Tag TIFF files with EXIF data extracted from XML.'
       program :help_formatter, :compact
 
-      global_option '-r', '--rolls FILE', 'Film Rolls XML file (default: stdin)'
+      global_option '-r', '--rolls FILE', 'Film Rolls XML file (default: stdin)' do |r|
+        $rolls_file = r
+      end
 
       command 'list-rolls' do |c|
         c.syntax      = 'filmrolls list-rolls [--rolls FILE]'
@@ -18,8 +20,8 @@ module Filmrolls
         c.description = 'List ID and additional data for all film rolls ' \
                         'in input.'
 
-        c.action do |_args, options|
-          rolls = get_rolls(options.rolls).map do |roll|
+        c.action do |_args, _options|
+          rolls = get_rolls($rolls_file).map do |roll|
             roll.merge(
               frames: roll[:frames].length,
               unload: roll[:unload].to_date,
@@ -43,7 +45,7 @@ module Filmrolls
         c.option '-i', '--id ID',   'Use data from roll with id ID'
 
         c.action do |_args, options|
-          roll = get_rolls(options.rolls).detect do |r|
+          roll = get_rolls($rolls_file).detect do |r|
             r[:id] == options.id
           end
 
@@ -65,7 +67,7 @@ module Filmrolls
         c.option '-n', '--dry-run', "Don't actually modify any files"
 
         c.action do |args, options|
-          roll = get_rolls(options.rolls).detect do |r|
+          roll = get_rolls($rolls_file).detect do |r|
             r[:id] == options.id
           end
 

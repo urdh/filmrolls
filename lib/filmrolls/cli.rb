@@ -36,6 +36,26 @@ module Filmrolls
         end
       end
 
+      command 'list-frames' do |c|
+        c.syntax      = 'filmrolls list-frames [--rolls FILE] --id ID'
+        c.summary     = 'List frames'
+        c.description = 'List frames from film roll with ID in input.'
+        c.option '-i', '--id ID',   'Use data from roll with id ID'
+
+        c.action do |_args, options|
+          roll = get_rolls(options.rolls).detect do |r|
+            r[:id] == options.id
+          end
+
+          unless roll.nil?
+            require 'terminal-table'
+            head = roll[:frames].first.keys.map(&:capitalize)
+            rows = roll[:frames].map(&:values)
+            say Terminal::Table.new(headings: head, rows: rows)
+          end
+        end
+      end
+
       command :tag do |c|
         c.syntax = 'filmrolls tag [--dry-run] [--rolls FILE] --id ID IMAGE...'
         c.summary = 'Write EXIF tags'

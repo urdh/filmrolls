@@ -57,15 +57,51 @@ module Filmrolls
       end
 
       command :tag do |c|
-        c.syntax = 'filmrolls tag [--dry-run] [--rolls FILE] --id ID IMAGE...'
-        c.summary = 'Write EXIF tags'
+        c.syntax      = 'filmrolls tag [--dry-run] [--rolls FILE] --id ID IMAGE...'
+        c.summary     = 'Write EXIF tags'
         c.description = 'Write EXIF tags to a set of images using data from ' \
                         'film roll with ID in input.'
         c.option '-i', '--id ID',   'Use data from roll with id ID'
         c.option '-n', '--dry-run', "Don't actually modify any files"
 
-        c.action do |_args, _options|
-          raise NotImplementedError
+        c.action do |args, options|
+          roll = get_rolls(options.rolls).detect do |r|
+            r[:id] == options.id
+          end
+
+          unless args.length == roll[:frames].length
+            abort "Expected #{roll[:frames].length} images, got #{args.length}"
+          end
+
+          roll[:frames].zip(args).each do |frame, file|
+            log 'Path', file
+            negative = Filmrolls::Negative.new(file)
+            log 'Date', frame[:date]
+            negative.date = frame[:date]
+            log 'Camera', roll[:camera]
+            negative.camera = roll[:camera]
+            log 'Lens', frame[:lens]
+            negative.lens = frame[:lens]
+            log 'Film', roll[:film]
+            negative.film = roll[:film]
+            log 'ISO', roll[:speed]
+            negative.speed = roll[:speed]
+            if frame[:shutter_speed] != 0 and frame[:aperture] != 0
+              log 'Shutter speed', "#{frame[:shutter_speed]}s"
+              negative.shutter_speed = frame[:shutter_speed]
+              log 'Aperture', "ƒ/#{frame[:aperture]}"
+              negative.aperture = frame[:aperture]
+            end
+            if frame[:compensation] != 0
+              log 'Compensation', frame[:compensation]
+              negative.compensation = frame[:compensation]
+            end
+            if frame[:position] != Geokit::LatLng.new(0.0, 0.0)
+              log 'Position', frame[:position]
+              negative.position = frame[:position]
+            end
+            negative.save! unless options.dry_run
+          end
         end
       end
     end

@@ -1,3 +1,3 @@
 require 'filmrolls/version'
-require 'filmrolls/exiftool'
+require 'filmrolls/negative'
 require 'filmrolls/xmlformat'

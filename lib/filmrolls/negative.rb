@@ -3,7 +3,7 @@ require 'filmrolls/exiftool'
 module Filmrolls
   class Negative
     def initialize(path)
-      @file = Exiftool.new(path)
+      @file = Exiftool.new(path, :coord_format => "%.6f degrees")
     end
 
     def merge(*args)
@@ -43,10 +43,10 @@ module Filmrolls
     end
 
     def position=(val)
-      @file[:GPSLatitude] = val.lat
-      @file[:GPSLatitudeRef] = 'E'
-      @file[:GPSLongitude] = val.lon
-      @file[:GPSLongitudeRef] = 'N'
+      @file[:GPSLatitude] = "#{val.lat} degrees"
+      @file[:GPSLatitudeRef] = 1 # Positive number interpreted as East
+      @file[:GPSLongitude] = "#{val.lng} degrees"
+      @file[:GPSLongitudeRef] = 1 # Positive number interpreted as North
     end
 
     def film=(val)

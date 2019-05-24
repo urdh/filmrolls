@@ -51,7 +51,6 @@ Gem::Specification.new do |s|
     test/test_xmlformat.rb
   ]
 
-  s.has_rdoc         = true
   s.extra_rdoc_files = %w[README.md LICENSE.md bin/filmrolls]
   s.rdoc_options     = [
     '--line-numbers', '--inline-source',

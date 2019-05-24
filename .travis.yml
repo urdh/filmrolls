@@ -23,6 +23,7 @@ script:
 before_deploy:
   - bundle exec rake ronn
 deploy:
+  skip_cleanup: true
   provider: rubygems
   gem: filmrolls
   api_key:

@@ -1,0 +1,51 @@
+filmrolls(1) -- Tag TIFF files with EXIF data extracted from XML data
+=====================================================================
+
+## SYNOPSIS
+
+`filmrolls list-rolls  [--rolls FILE]`
+`filmrolls list-frames [--rolls FILE] --id ID`
+`filmrolls tag         [--rolls FILE] --id ID FILES...`
+
+## DESCRIPTION
+
+Reads XML data from the _Film Rolls_ iOS app and displays
+or applies this data as EXIF tags to a given set of files.
+
+## OPTIONS
+
+  * `-r`, `--rolls`:
+    Input XML file. If this argument is not present, XML is
+    read from standard input.
+
+  * `-i`, `--id`:
+    A specific film roll to work with, keyed by the _Notes_
+    field of the _Film Rolls_ content.
+
+  * `-n`, `--dry-run`:
+    Don't actually modify any files.
+
+## COMMANDS
+
+  * `list-rolls`:
+    List all film rolls in the input XML, along with some
+    common metadata.
+
+  * `list-frames`:
+    List all frames of the given roll in the input XML, along
+    with all the relevant metadata.
+
+  * `tag`:
+    Tag the given input files with EXIF data based on the given
+    roll in the input XML. All file formats supported by
+    exiftool(1) are supported. The number of files to tag must
+    match the number of frames in the given roll.
+
+    **Note:** No attempt to validate the file format of the
+    target files will be made, and the command will exit after
+    the first failure. Use the `--dry-run` flag to verify the
+    command-line arguments before performing real actions.
+
+## SEE ALSO
+
+exiftool(1)

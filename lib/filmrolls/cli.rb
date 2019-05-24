@@ -45,9 +45,13 @@ module Filmrolls
         c.option '-i', '--id ID',   'Use data from roll with id ID'
 
         c.action do |_args, options|
+          abort "A film roll ID must be supplied" if options.id.nil?
+
           roll = get_rolls($rolls_file).detect do |r|
             r[:id] == options.id
           end
+
+          abort "Could not find film roll with ID #{options.id}" if roll.nil?
 
           unless roll.nil?
             require 'terminal-table'
@@ -67,9 +71,13 @@ module Filmrolls
         c.option '-n', '--dry-run', "Don't actually modify any files"
 
         c.action do |args, options|
+          abort "A film roll ID must be supplied" if options.id.nil?
+
           roll = get_rolls($rolls_file).detect do |r|
             r[:id] == options.id
           end
+
+          abort "Could not find film roll with ID #{options.id}" if roll.nil?
 
           unless args.length == roll[:frames].length
             abort "Expected #{roll[:frames].length} images, got #{args.length}"

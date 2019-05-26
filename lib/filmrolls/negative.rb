@@ -35,7 +35,7 @@ module Filmrolls
     end
 
     def shutter_speed=(val)
-      @file[:ShutterSpeedValue] = val
+      @file[:ExposureTime] = val
     end
 
     def compensation=(val)

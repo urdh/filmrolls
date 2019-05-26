@@ -61,17 +61,17 @@ module Filmrolls
       # TODO: this is hacky as f
       make = val.strip.split(/\s+/)[0]
       model = val.strip[(make.length)..-1]
-      @file[:Lens] = val
-      @file[:LensMake] = make
-      @file[:LensModel] = model
+      @file[:Lens] = val.strip
+      @file[:LensMake] = make.strip
+      @file[:LensModel] = model.strip
     end
 
     def camera=(val)
       make = val.strip.split(/\s+/)[0]
       model = val.strip[(make.length)..-1]
-      @file[:LocalizedCameraModel] = val
-      @file[:Make] = make
-      @file[:Model] = model
+      @file[:LocalizedCameraModel] = val.strip
+      @file[:Make] = make.strip
+      @file[:Model] = model.strip
     end
   end
 end

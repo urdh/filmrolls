@@ -32,6 +32,8 @@ module Filmrolls
 
     def speed=(val)
       @file[:ISO] = val
+      @file[:ISOSpeed] = val
+      @file[:SensitivityType] = 'ISO Speed'
     end
 
     def shutter_speed=(val)

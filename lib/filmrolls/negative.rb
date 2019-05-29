@@ -44,9 +44,9 @@ module Filmrolls
 
     def position=(val)
       @file[:GPSLatitude] = "#{val.lat} degrees"
-      @file[:GPSLatitudeRef] = 1 # Positive number interpreted as East
+      @file[:GPSLatitudeRef] = 'North'
       @file[:GPSLongitude] = "#{val.lng} degrees"
-      @file[:GPSLongitudeRef] = 1 # Positive number interpreted as North
+      @file[:GPSLongitudeRef] = 'East'
     end
 
     def film=(val)

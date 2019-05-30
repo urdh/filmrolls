@@ -3,7 +3,7 @@ require 'filmrolls/exiftool'
 module Filmrolls
   class Negative
     def initialize(path)
-      @file = Exiftool.new(path, :coord_format => "%.6f degrees")
+      @file = Exiftool.new(path)
     end
 
     def merge(*args)

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    filmrolls (0.1.2)
+    filmrolls (0.1.3)
       commander (~> 4.4)
       exiftool_vendored (~> 11)
       geokit (~> 1.11)

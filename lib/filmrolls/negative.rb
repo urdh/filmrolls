@@ -28,6 +28,7 @@ module Filmrolls
 
     def aperture=(val)
       @file[:ApertureValue] = val
+      @file[:FNumber] = val
     end
 
     def speed=(val)
@@ -38,6 +39,7 @@ module Filmrolls
 
     def shutter_speed=(val)
       @file[:ExposureTime] = val
+      @file[:ShutterSpeedValue] = val.to_f
     end
 
     def compensation=(val)

@@ -3,9 +3,10 @@ filmrolls(1) -- Tag TIFF files with EXIF data extracted from XML data
 
 ## SYNOPSIS
 
-`filmrolls list-rolls  [--rolls FILE]`
-`filmrolls list-frames [--rolls FILE] --id ID`
-`filmrolls tag         [--rolls FILE] --id ID FILES...`
+`filmrolls list-rolls     [--rolls FILE]`
+`filmrolls list-frames    [--rolls FILE] --id ID`
+`filmrolls tag            [--meta FILE] [--rolls FILE] --id ID FILES...`
+`filmrolls apply-metadata --meta FILE FILES...`
 
 ## DESCRIPTION
 
@@ -17,6 +18,11 @@ or applies this data as EXIF tags to a given set of files.
   * `-r`, `--rolls`:
     Input XML file. If this argument is not present, XML is
     read from standard input.
+
+  * `-m`, `--meta`:
+    Input YAML file containing author metadata. Only applicable
+    to the `tag` and `apply-metadata` commands. For a brief
+    description of the YAML keys, see [METADATA FORMAT][].
 
   * `-i`, `--id`:
     A specific film roll to work with, keyed by the _Notes_
@@ -45,6 +51,38 @@ or applies this data as EXIF tags to a given set of files.
     target files will be made, and the command will exit after
     the first failure. Use the `--dry-run` flag to verify the
     command-line arguments before performing real actions.
+
+  * `apply-metadata`
+    Apply author metadata to the given input files based on the
+    given YAML author metadata file.
+
+## METADATA FORMAT
+
+The YAML author metadata format is extremely simple:
+
+    author:
+      name: A. Photographer
+      url: https://example.com/
+    license: cc-by-sa
+
+The `url` key may be omitted, as may the `license` key to indicate
+that the usual "all rights reserved" copyright restrictions apply.
+Valid values for the `license` key are the following:
+
+  * `cc0`:
+    Creative Commons 1.0 Universal Public Domain Declaration
+  * `cc-by`:
+    Creative Commons 4.0 Attribution International License
+  * `cc-by-sa`:
+    Creative Commons 4.0 Attribution-ShareAlike International License
+  * `cc-by-nd`:
+    Creative Commons 4.0 Attribution-NoDerivatives International License
+  * `cc-by-nc`:
+    Creative Commons 4.0 Attribution-NonCommercial International License
+  * `cc-by-nc-sa`:
+    Creative Commons 4.0 Attribution-NonCommercial-ShareAlike International License
+  * `cc-by-nc-nd`:
+    Creative Commons 4.0 Attribution-NonCommercial-NoDerivatives International License
 
 ## SEE ALSO
 

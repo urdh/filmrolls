@@ -28,15 +28,20 @@ Gem::Specification.new do |s|
     lib/filmrolls.rb
     lib/filmrolls/cli.rb
     lib/filmrolls/exiftool.rb
+    lib/filmrolls/metadata.rb
     lib/filmrolls/negative.rb
     lib/filmrolls/version.rb
     lib/filmrolls/xmlformat.rb
     test/test_helper.rb
     test/test_exiftool.rb
+    test/test_metadata.rb
     test/test_xmlformat.rb
     test/data/filmrolls.xml
     test/data/with-exif.tiff
     test/data/without-exif.tiff
+    test/data/meta-copyright.yaml
+    test/data/meta-creative-commons.yaml
+    test/data/meta-public-domain.yaml
   ]
   # TODO: how to generate the man page and inclue in the gem?
 
@@ -48,6 +53,7 @@ Gem::Specification.new do |s|
   s.require_paths = 'lib'
   s.test_files    = %w[
     test/test_exiftool.rb
+    test/test_metadata.rb
     test/test_xmlformat.rb
   ]
 

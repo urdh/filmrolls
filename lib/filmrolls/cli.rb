@@ -13,6 +13,9 @@ module Filmrolls
       global_option '-r', '--rolls FILE', 'Film Rolls XML file (default: stdin)' do |r|
         $rolls_file = r
       end
+      global_option '-m', '--meta FILE', 'Author metadata YAML file' do |r|
+        $yaml_file = r
+      end
 
       command 'list-rolls' do |c|
         c.syntax      = 'filmrolls list-rolls [--rolls FILE]'
@@ -63,7 +66,7 @@ module Filmrolls
       end
 
       command :tag do |c|
-        c.syntax      = 'filmrolls tag [--dry-run] [--rolls FILE] --id ID IMAGE...'
+        c.syntax      = 'filmrolls tag [--dry-run] [--meta FILE] [--rolls FILE] --id ID IMAGE...'
         c.summary     = 'Write EXIF tags'
         c.description = 'Write EXIF tags to a set of images using data from ' \
                         'film roll with ID in input.'
@@ -82,6 +85,9 @@ module Filmrolls
           unless args.length == roll[:frames].length
             abort "Expected #{roll[:frames].length} images, got #{args.length}"
           end
+
+          meta = get_metadata($yaml_file)
+          meta.each { |k, v| log k.to_s.gsub('_',' ').capitalize, v }
 
           roll[:frames].zip(args).each do |frame, file|
             log 'Path', file
@@ -110,6 +116,28 @@ module Filmrolls
               log 'Position', frame[:position]
               negative.position = frame[:position]
             end
+            negative.merge(meta)
+            negative.save! unless options.dry_run
+          end
+        end
+      end
+
+      command 'apply-metadata' do |c|
+        c.syntax      = 'filmrolls apply-metadata [--dry-run] --meta FILE IMAGE...'
+        c.summary     = 'Write author metadata'
+        c.description = 'Write author metadata to a set of images using YAML data from FILE.'
+        c.option '-n', '--dry-run', "Don't actually modify any files"
+
+        c.action do |args, options|
+          abort "A YAML file must be supplied" if $yaml_file.nil?
+
+          meta = get_metadata($yaml_file)
+          meta.each { |k, v| log k.to_s.gsub('_',' ').capitalize, v }
+
+          args.each do |file|
+            log 'Path', file
+            negative = Filmrolls::Negative.new(file)
+            negative.merge(meta)
             negative.save! unless options.dry_run
           end
         end
@@ -124,6 +152,14 @@ module Filmrolls
           Filmrolls::XMLFormat.load(file.nil? ? $stdin.read : File.read(file))[:rolls]
         rescue SystemCallError => err
           abort "Could not read input XML: #{err.message}"
+        end
+      end
+
+      def get_metadata(file)
+        begin
+          file.nil? ? Hash.new : Filmrolls::Metadata.load(File.read(file))
+        rescue SystemCallError => err
+          abort "Could not read input YAML: #{err.message}"
         end
       end
     end

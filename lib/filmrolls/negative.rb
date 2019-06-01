@@ -3,13 +3,13 @@ require 'filmrolls/exiftool'
 module Filmrolls
   class Negative
     def initialize(path)
-      @file = Exiftool.new(path, :coord_format => "%.6f degrees")
+      @file = Exiftool.new(path)
     end
 
-    def merge(*args)
+    def merge(args)
       args.each do |key, value|
         method = "#{key}="
-        @self.public_send(method, value) if @self.respond_to? method
+        public_send(method, value) if respond_to? method
       end
     end
 
@@ -76,6 +76,40 @@ module Filmrolls
       @file[:LocalizedCameraModel] = val.strip
       @file[:Make] = make.strip
       @file[:Model] = model.strip
+    end
+
+    def author=(val)
+      @file[:Artist] = val
+      @file['By-Line'] = val
+      @file[:Author] = val
+      @file[:Creator] = val
+      @file['By-lineTitle'] = 'Photographer'
+      @file[:AttributionName] = val if @file[:License]
+    end
+
+    def copyright=(val)
+      year = @file[:datetimecreated] ? @file[:datetimecreated].year : DateTime.now.year
+      notice = (val % {:year => year})
+      @file[:Copyright] = notice
+      @file[:CopyrightNotice] = notice
+      @file[:Rights] = notice
+    end
+
+    def author_url=(val)
+      @file[:AttributionURL] = val
+    end
+
+    def license_url=(val)
+      @file[:License] = val
+      @file[:AttributionName] = @file[:Artist] if @file[:Artist]
+    end
+
+    def marked=(val)
+      @file[:Marked] = val
+    end
+
+    def usage_terms=(val)
+      @file[:UsageTerms] = val
     end
   end
 end

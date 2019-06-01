@@ -66,7 +66,7 @@ module Filmrolls
       end
 
       command :tag do |c|
-        c.syntax      = 'filmrolls tag [--dry-run] [--rolls FILE] --id ID IMAGE...'
+        c.syntax      = 'filmrolls tag [--dry-run] [--meta FILE] [--rolls FILE] --id ID IMAGE...'
         c.summary     = 'Write EXIF tags'
         c.description = 'Write EXIF tags to a set of images using data from ' \
                         'film roll with ID in input.'
@@ -85,6 +85,9 @@ module Filmrolls
           unless args.length == roll[:frames].length
             abort "Expected #{roll[:frames].length} images, got #{args.length}"
           end
+
+          meta = get_metadata($yaml_file)
+          meta.each { |k, v| log k.to_s.gsub('_',' ').capitalize, v }
 
           roll[:frames].zip(args).each do |frame, file|
             log 'Path', file
@@ -113,6 +116,7 @@ module Filmrolls
               log 'Position', frame[:position]
               negative.position = frame[:position]
             end
+            negative.merge(meta)
             negative.save! unless options.dry_run
           end
         end

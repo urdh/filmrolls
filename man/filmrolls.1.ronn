@@ -5,7 +5,7 @@ filmrolls(1) -- Tag TIFF files with EXIF data extracted from XML data
 
 `filmrolls list-rolls     [--rolls FILE]`
 `filmrolls list-frames    [--rolls FILE] --id ID`
-`filmrolls tag            [--rolls FILE] --id ID FILES...`
+`filmrolls tag            [--meta FILE] [--rolls FILE] --id ID FILES...`
 `filmrolls apply-metadata --meta FILE FILES...`
 
 ## DESCRIPTION

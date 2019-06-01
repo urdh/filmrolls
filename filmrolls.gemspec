@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
   EOF
 
   s.files = %w[
+    CHANGELOG.md
     filmrolls.gemspec
     Rakefile
     README.md

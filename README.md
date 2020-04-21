@@ -1,11 +1,11 @@
 # Film Rolls EXIF tagger
 
-[![Build Status](https://img.shields.io/travis/urdh/filmrolls/master.svg)][build-status]
-[![Code Quality](https://img.shields.io/codacy/grade/ad6e6ba15806436ea9cb80c41fc75fb0/master.svg)][codacy]
-[![Code Coverage](https://img.shields.io/codacy/coverage/ad6e6ba15806436ea9cb80c41fc75fb0/master.svg)][codacy]
-[![Gem](https://img.shields.io/gem/v/filmrolls.svg)][release]
-[![License](https://img.shields.io/github/license/urdh/filmrolls.svg)](LICENSE.md)
-[![Semantic Versioning](https://img.shields.io/badge/semver-2.0.0-blue.svg)][semver]
+[![Build Status](https://img.shields.io/travis/urdh/filmrolls/master)][build-status]
+[![Code Quality](https://img.shields.io/codacy/grade/ad6e6ba15806436ea9cb80c41fc75fb0/master)][codacy]
+[![Code Coverage](https://img.shields.io/codacy/coverage/ad6e6ba15806436ea9cb80c41fc75fb0/master)][codacy]
+[![Gem](https://img.shields.io/gem/v/filmrolls)][release]
+[![License](https://img.shields.io/github/license/urdh/filmrolls)](LICENSE.md)
+[![Semantic Versioning](https://img.shields.io/badge/semver-2.0.0-blue)][semver]
 
 This is a utility designed to read the XML files used by the [Film Rolls iOS app][film-rolls], and enable batch EXIF tagging of scanned negatives in TIFF format based on the information in these XML files.
 

@@ -42,7 +42,7 @@ GEM
     racc (1.5.2)
     rake (13.0.1)
     rdiscount (2.2.0.1)
-    rdoc (6.1.1)
+    rdoc (6.3.2)
     ronn (0.7.3)
       hpricot (>= 0.8.2)
       mustache (>= 0.7.0)

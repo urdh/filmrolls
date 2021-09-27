@@ -1,6 +1,5 @@
-$LOAD_PATH.push File.expand_path('../lib', __FILE__)
+$LOAD_PATH.push File.expand_path('lib', __dir__)
 require 'filmrolls/version'
-require 'rake'
 
 Gem::Specification.new do |s|
   s.name        = 'filmrolls'
@@ -47,37 +46,36 @@ Gem::Specification.new do |s|
   # TODO: how to generate the man page and inclue in the gem?
 
   s.bindir      = 'bin'
-  s.executables = %w[
-    filmrolls
-  ]
+  s.executables = %w[filmrolls]
 
   s.require_paths = 'lib'
-  s.test_files    = %w[
-    test/test_exiftool.rb
-    test/test_metadata.rb
-    test/test_xmlformat.rb
-  ]
+  s.test_files    = %w[test/test_exiftool.rb test/test_metadata.rb test/test_xmlformat.rb]
 
   s.extra_rdoc_files = %w[README.md LICENSE.md bin/filmrolls]
   s.rdoc_options     = [
-    '--line-numbers', '--inline-source',
-    '--title', 'Film Rolls EXIF tagger',
-    '--main', 'README.md'
+    '--line-numbers',
+    '--inline-source',
+    '--title',
+    'Film Rolls EXIF tagger',
+    '--main',
+    'README.md'
   ]
 
-  s.add_dependency 'mini_exiftool', ['~> 2.8']
-  s.add_dependency 'exiftool_vendored', ['~> 11']
-  s.add_dependency 'nokogiri', ['~> 1.10']
-  s.add_dependency 'geokit', ['~> 1.11']
   s.add_dependency 'commander', ['~> 4.4']
+  s.add_dependency 'exiftool_vendored', ['~> 11']
+  s.add_dependency 'geokit', ['~> 1.11']
+  s.add_dependency 'mini_exiftool', ['~> 2.8']
+  s.add_dependency 'nokogiri', ['~> 1.10']
   s.add_dependency 'terminal-table', ['~> 1.8']
 
-  s.add_development_dependency 'rake', '~> 13'
-  s.add_development_dependency 'rdoc', ['~> 6']
   s.add_development_dependency 'bundler', ['~> 2']
-  s.add_development_dependency 'simplecov', ['~> 0.14']
-  s.add_development_dependency 'codacy-coverage', ['~> 2']
   s.add_development_dependency 'minitest', ['~> 5.8']
   s.add_development_dependency 'minitest-reporters', ['~> 1.3']
+  s.add_development_dependency 'rake', '~> 13'
+  s.add_development_dependency 'rdoc', ['~> 6']
   s.add_development_dependency 'ronn', ['~> 0.7']
+  s.add_development_dependency 'rubocop', ['~> 1.21']
+  s.add_development_dependency 'rubocop-minitest', ['~> 0.15']
+  s.add_development_dependency 'rubocop-rake', ['~> 0.6']
+  s.add_development_dependency 'simplecov', ['~> 0.20']
 end

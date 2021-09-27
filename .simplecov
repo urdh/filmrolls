@@ -1,6 +1,6 @@
 if ENV['CI']
-  require 'codacy-coverage'
-  SimpleCov.formatter = Codacy::Formatter
+  require 'simplecov_json_formatter'
+  SimpleCov.formatter = SimpleCov::Formatter::JSONFormatter
 end
 
 SimpleCov.start do

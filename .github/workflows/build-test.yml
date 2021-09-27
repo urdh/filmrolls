@@ -1,0 +1,41 @@
+name: "Build & test"
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build & test
+    strategy:
+      matrix:
+        ruby: [2.5, 2.6, 2.7]
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+      - run: bundle install
+      - run: bundle exec rake rdoc
+        id: rdoc
+      - run: bundle exec rake test
+        id: test
+      - run: bundle exec rake rubocop
+        id: rubocop
+        continue-on-error: true
+      - run: bundle exec rake gem
+        id: gem
+      - run: sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace/@g' coverage/coverage.json
+      - uses: sonarsource/sonarcloud-github-action@master
+        if: ${{ matrix.ruby == '2.7' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+

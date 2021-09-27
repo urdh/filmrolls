@@ -21,19 +21,16 @@ Style/MissingElse:
 Style/MethodCallWithArgsParentheses:
   Enabled: false
 
-Rails:
-  Enabled: false
-
 Metrics/BlockLength:
   Exclude:
     - test/*.rb
     - '*.gemspec'
 
-Metrics/LineLength:
+Layout/LineLength:
   Exclude:
     - test/*.rb
 
-Style/FileName:
+Naming/FileName:
   Exclude:
     - 'Rakefile'
     - 'Gemfile'

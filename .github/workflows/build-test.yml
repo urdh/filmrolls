@@ -27,8 +27,12 @@ jobs:
         id: rdoc
       - run: bundle exec rake test
         id: test
+      - run: bundle exec rake rubocop
+        id: rubocop
+        continue-on-error: true
       - run: bundle exec rake gem
         id: gem
+      - run: sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace/@g' coverage/coverage.json
       - uses: sonarsource/sonarcloud-github-action@master
         if: ${{ matrix.ruby == '2.5' }}
         env:

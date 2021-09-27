@@ -2,6 +2,7 @@
 *.rbc
 /.config
 /coverage/
+/rubocop.json
 /InstalledFiles
 /pkg/
 /spec/reports/

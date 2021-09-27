@@ -74,8 +74,8 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rake', '~> 13'
   s.add_development_dependency 'rdoc', ['~> 6']
   s.add_development_dependency 'bundler', ['~> 2']
-  s.add_development_dependency 'simplecov', ['~> 0.14']
-  s.add_development_dependency 'codacy-coverage', ['~> 2']
+  s.add_development_dependency 'simplecov', ['~> 0.20']
+  s.add_development_dependency 'rubocop', ['~> 1.21']
   s.add_development_dependency 'minitest', ['~> 5.8']
   s.add_development_dependency 'minitest-reporters', ['~> 1.3']
   s.add_development_dependency 'ronn', ['~> 0.7']

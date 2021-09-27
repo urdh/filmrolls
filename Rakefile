@@ -1,6 +1,7 @@
 require 'rake/testtask'
 require 'rdoc/task'
 require 'rubygems/package_task'
+require 'rubocop/rake_task'
 
 def gemspec
   require 'rubygems/specification'
@@ -37,6 +38,10 @@ end
 Rake::TestTask.new(:test) do |t|
   t.libs       = gemspec.require_paths + %w[test]
   t.test_files = gemspec.test_files
+end
+
+RuboCop::RakeTask.new(:rubocop) do |t|
+  t.options = ['--format', 'json', '--out', 'rubocop.json'] if ENV['CI']
 end
 
 task default: :test

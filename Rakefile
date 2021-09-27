@@ -5,9 +5,7 @@ require 'rubocop/rake_task'
 
 def gemspec
   require 'rubygems/specification'
-  @gemspec ||= Gem::Specification.load(
-    File.expand_path(File.dirname(__FILE__) + '/filmrolls.gemspec')
-  )
+  @gemspec ||= Gem::Specification.load(File.expand_path("#{File.dirname(__FILE__)}/filmrolls.gemspec"))
 end
 
 rule(/\.[0-9]$/ => [proc { |name| "#{name}.ronn" }]) do |task|

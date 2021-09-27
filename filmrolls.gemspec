@@ -1,6 +1,5 @@
 $LOAD_PATH.push File.expand_path('../lib', __FILE__)
 require 'filmrolls/version'
-require 'rake'
 
 Gem::Specification.new do |s|
   s.name        = 'filmrolls'

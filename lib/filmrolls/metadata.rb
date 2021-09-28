@@ -57,19 +57,19 @@ module Filmrolls
         end
 
         LICENSES = {
-          'cc0': { 'url': 'https://creativecommons.org/publicdomain/zero/1.0/' },
-          'cc-by': {       'name': 'Attribution',
-                           'url': 'https://creativecommons.org/licenses/by/4.0/' },
-          'cc-by-sa': {    'name': 'Attribution-ShareAlike',
-                           'url': 'https://creativecommons.org/licenses/by-sa/4.0/' },
-          'cc-by-nd': {    'name': 'Attribution-NoDerivatives',
-                           'url': 'https://creativecommons.org/licenses/by-nd/4.0/' },
-          'cc-by-nc': {    'name': 'Attribution-NonCommercial',
-                           'url': 'https://creativecommons.org/licenses/by-nc/4.0/' },
-          'cc-by-nc-sa': { 'name': 'Attribution-NonCommercial-ShareAlike',
-                           'url': 'https://creativecommons.org/licenses/by-nc-sa/4.0/' },
-          'cc-by-nc-nd': { 'name': 'Attribution-NonCommercial-NoDerivatives',
-                           'url': 'https://creativecommons.org/licenses/by-nc-nd/4.0/' }
+          'cc0': { url: 'https://creativecommons.org/publicdomain/zero/1.0/' },
+          'cc-by': {       name: 'Attribution',
+                           url: 'https://creativecommons.org/licenses/by/4.0/' },
+          'cc-by-sa': {    name: 'Attribution-ShareAlike',
+                           url: 'https://creativecommons.org/licenses/by-sa/4.0/' },
+          'cc-by-nd': {    name: 'Attribution-NoDerivatives',
+                           url: 'https://creativecommons.org/licenses/by-nd/4.0/' },
+          'cc-by-nc': {    name: 'Attribution-NonCommercial',
+                           url: 'https://creativecommons.org/licenses/by-nc/4.0/' },
+          'cc-by-nc-sa': { name: 'Attribution-NonCommercial-ShareAlike',
+                           url: 'https://creativecommons.org/licenses/by-nc-sa/4.0/' },
+          'cc-by-nc-nd': { name: 'Attribution-NonCommercial-NoDerivatives',
+                           url: 'https://creativecommons.org/licenses/by-nc-nd/4.0/' }
         }
       end
     end

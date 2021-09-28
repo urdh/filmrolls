@@ -90,7 +90,7 @@ module Filmrolls
     def copyright=(val)
       year = @file[:datetimeoriginal] ? @file[:datetimeoriginal].year :
              @file[:datetimecreated] ? @file[:datetimecreated].year : DateTime.now.year
-      notice = (val % {:year => year})
+      notice = (val % {year => year})
       @file[:Copyright] = notice
       @file[:CopyrightNotice] = notice
       @file[:Rights] = notice

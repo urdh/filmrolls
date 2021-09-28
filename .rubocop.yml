@@ -34,6 +34,9 @@ Lint/ConstantResolution:
 Lint/NumberConversion:
   Enabled: false
 
+Lint/SymbolConversion:
+  EnforcedStyle: consistent
+
 Metrics/BlockLength:
   Exclude:
     - test/*.rb

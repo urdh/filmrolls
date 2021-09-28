@@ -42,10 +42,10 @@ describe 'Filmrolls::XMLFormat.load' do
         _(roll[:camera]).must_equal 'Voigtländer Bessa R2M'
       end
       it 'should have the expected load date' do
-        _(roll[:load]).must_equal DateTime.new(2016, 3, 28, 15, 16, 36, '+00:00')
+        _(roll[:load]).must_equal Time.new(2016, 3, 28, 15, 16, 36, '+00:00')
       end
       it 'should have the expected unload date' do
-        _(roll[:unload]).must_equal DateTime.new(2016, 5, 21, 14, 13, 15, '+00:00')
+        _(roll[:unload]).must_equal Time.new(2016, 5, 21, 14, 13, 15, '+00:00')
       end
 
       it 'should have one frame' do
@@ -71,7 +71,7 @@ describe 'Filmrolls::XMLFormat.load' do
           _(frame[:accessory]).must_equal ''
         end
         it 'should have the expected date' do
-          _(frame[:date]).must_equal DateTime.new(2016, 5, 13, 14, 12, 40, '+00:00')
+          _(frame[:date]).must_equal Time.new(2016, 5, 13, 14, 12, 40, '+00:00')
         end
         it 'should have the expected note' do
           _(frame[:note]).must_equal ''

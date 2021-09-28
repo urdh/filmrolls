@@ -92,7 +92,7 @@ module Filmrolls
         if @file[:datetimeoriginal]
           @file[:datetimeoriginal].year
         else
-          @file[:datetimecreated] ? @file[:datetimecreated].year : DateTime.now.year
+          @file[:datetimecreated] ? @file[:datetimecreated].year : Time.now.year
         end
       notice = format(val, year => year)
       @file[:Copyright] = notice

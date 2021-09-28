@@ -5,6 +5,7 @@ Gem::Specification.new do |s|
   s.name        = 'filmrolls'
   s.version     = Filmrolls::VERSION
   s.summary     = 'Tag TIFF files with EXIF data extracted from XML data'
+  s.required_ruby_version = '~> 3.0'
 
   s.author      = 'Simon Sigurdhsson'
   s.email       = 'Sigurdhsson@gmail.com'

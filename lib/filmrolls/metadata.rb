@@ -6,9 +6,9 @@ module Filmrolls
       def self.load(io)
         doc = YAML.safe_load(io)
         # Data validation, sort of
-        raise 'YAML input missing `author` key' unless doc.key?('author')
-        raise 'YAML input missing `author.name` key' unless doc['author'].key?('name')
-        raise "YAML input has invalid license `#{doc['license']}`" unless is_valid_license(doc['license'])
+        raise KeyError, 'YAML input missing `author` key' unless doc.key?('author')
+        raise KeyError, 'YAML input missing `author.name` key' unless doc['author'].key?('name')
+        raise NameError, "YAML input has invalid license `#{doc['license']}`" unless valid_license?(doc['license'])
 
         # Output construction
         {
@@ -16,7 +16,7 @@ module Filmrolls
           copyright: get_copyright(doc['author']['name'], doc['license']),
           author_url: doc['license'].nil? ? nil : doc['author']['url'],
           license_url: get_license_url(doc['license']),
-          marked: !is_public_domain(doc['license']),
+          marked: !public_domain?(doc['license']),
           usage_terms: get_usage_terms(doc['author']['name'], doc['license'])
         }.delete_if { |_k, v| v.nil? }
       end
@@ -24,21 +24,21 @@ module Filmrolls
       class << self
         private
 
-        def is_valid_license(license)
+        def valid_license?(license)
           license.nil? or LICENSES.key?(license.to_sym)
         end
 
-        def is_public_domain(license)
+        def public_domain?(license)
           license == 'cc0'
         end
 
         def get_copyright(author, license)
-          if is_public_domain(license)
-            "© #{author}, %{year}. No rights reserved."
+          if public_domain?(license)
+            "© #{author}, %<year>d. No rights reserved."
           elsif license.nil?
-            "© #{author}, %{year}. All rights reserved."
+            "© #{author}, %<year>d. All rights reserved."
           else
-            "© #{author}, %{year}. Some rights reserved."
+            "© #{author}, %<year>d. Some rights reserved."
           end
         end
 
@@ -47,7 +47,7 @@ module Filmrolls
         end
 
         def get_usage_terms(author, license)
-          if is_public_domain(license)
+          if public_domain?(license)
             [
               "To the extent possible under law, #{author} has waived all",
               'copyright and related or neighboring rights to this work.'

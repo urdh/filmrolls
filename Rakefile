@@ -25,7 +25,9 @@ end
 desc 'Build all manual pages'
 task ronn: gemspec.files.select { |f| f[/\.[0-9]$/] }
 
-Gem::PackageTask.new(gemspec) {}
+Gem::PackageTask.new(gemspec) do |p|
+  # No extra packages needed.
+end
 
 RDoc::Task.new(:rdoc) do |r|
   r.options = gemspec.rdoc_options

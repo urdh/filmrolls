@@ -13,7 +13,7 @@ describe 'Filmrolls::Metadata.load' do
     end
 
     it 'should have the correct copyright string' do
-      _(data[:copyright]).must_equal '© Simon Sigurdhsson, %{year}. Some rights reserved.'
+      _(data[:copyright]).must_equal '© Simon Sigurdhsson, %<year>d. Some rights reserved.'
     end
 
     it 'should have the correct attribution url' do
@@ -49,7 +49,7 @@ describe 'Filmrolls::Metadata.load' do
     end
 
     it 'should have the correct copyright string' do
-      _(data[:copyright]).must_equal '© Simon Sigurdhsson, %{year}. All rights reserved.'
+      _(data[:copyright]).must_equal '© Simon Sigurdhsson, %<year>d. All rights reserved.'
     end
 
     it 'should have no attribution url' do
@@ -79,7 +79,7 @@ describe 'Filmrolls::Metadata.load' do
     end
 
     it 'should have the correct copyright string' do
-      _(data[:copyright]).must_equal '© Simon Sigurdhsson, %{year}. No rights reserved.'
+      _(data[:copyright]).must_equal '© Simon Sigurdhsson, %<year>d. No rights reserved.'
     end
 
     it 'should have the correct attribution url' do

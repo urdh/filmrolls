@@ -9,27 +9,27 @@ describe 'Filmrolls::Metadata.load' do
     end
 
     it 'should have the correct author' do
-      data[:author].must_equal 'Simon Sigurdhsson'
+      _(data[:author]).must_equal 'Simon Sigurdhsson'
     end
 
     it 'should have the correct copyright string' do
-      data[:copyright].must_equal '© Simon Sigurdhsson, %{year}. Some rights reserved.'
+      _(data[:copyright]).must_equal '© Simon Sigurdhsson, %{year}. Some rights reserved.'
     end
 
     it 'should have the correct attribution url' do
-      data[:author_url].must_equal 'http://photography.sigurdhsson.org/'
+      _(data[:author_url]).must_equal 'http://photography.sigurdhsson.org/'
     end
 
     it 'should have the correct license url' do
-      data[:license_url].must_equal 'https://creativecommons.org/licenses/by-nc/4.0/'
+      _(data[:license_url]).must_equal 'https://creativecommons.org/licenses/by-nc/4.0/'
     end
 
     it 'should have the marked attribute' do
-      data[:marked].must_equal true
+      _(data[:marked]).must_equal true
     end
 
     it 'should have the correct usage terms' do
-      data[:usage_terms].must_equal [
+      _(data[:usage_terms]).must_equal [
         'This work is licensed under the Creative Commons',
         'Attribution-NonCommercial 4.0 International License. To view a copy',
         'of this license, visit https://creativecommons.org/licenses/by-nc/4.0/',
@@ -45,19 +45,19 @@ describe 'Filmrolls::Metadata.load' do
     end
 
     it 'should have the correct author' do
-      data[:author].must_equal 'Simon Sigurdhsson'
+      _(data[:author]).must_equal 'Simon Sigurdhsson'
     end
 
     it 'should have the correct copyright string' do
-      data[:copyright].must_equal '© Simon Sigurdhsson, %{year}. All rights reserved.'
+      _(data[:copyright]).must_equal '© Simon Sigurdhsson, %{year}. All rights reserved.'
     end
 
     it 'should have no attribution url' do
-      data.keys.wont_include :author_url
+      _(data.keys).wont_include :author_url
     end
 
     it 'should have no license url' do
-      data.keys.wont_include :license_url
+      _(data.keys).wont_include :license_url
     end
 
     it 'should have the marked attribute' do
@@ -65,7 +65,7 @@ describe 'Filmrolls::Metadata.load' do
     end
 
     it 'should have no usage terms' do
-      data.keys.wont_include :usage_terms
+      _(data.keys).wont_include :usage_terms
     end
   end
 
@@ -75,19 +75,19 @@ describe 'Filmrolls::Metadata.load' do
     end
 
     it 'should have the correct author' do
-      data[:author].must_equal 'Simon Sigurdhsson'
+      _(data[:author]).must_equal 'Simon Sigurdhsson'
     end
 
     it 'should have the correct copyright string' do
-      data[:copyright].must_equal '© Simon Sigurdhsson, %{year}. No rights reserved.'
+      _(data[:copyright]).must_equal '© Simon Sigurdhsson, %{year}. No rights reserved.'
     end
 
     it 'should have the correct attribution url' do
-      data[:author_url].must_equal 'http://photography.sigurdhsson.org/'
+      _(data[:author_url]).must_equal 'http://photography.sigurdhsson.org/'
     end
 
     it 'should have the correct license url' do
-      data[:license_url].must_equal 'https://creativecommons.org/publicdomain/zero/1.0/'
+      _(data[:license_url]).must_equal 'https://creativecommons.org/publicdomain/zero/1.0/'
     end
 
     it 'should not have the marked attribute' do
@@ -95,7 +95,7 @@ describe 'Filmrolls::Metadata.load' do
     end
 
     it 'should have the correct usage terms' do
-      data[:usage_terms].must_equal [
+      _(data[:usage_terms]).must_equal [
         'To the extent possible under law, Simon Sigurdhsson has waived',
         'all copyright and related or neighboring rights to this work.'
       ].join(' ')

@@ -64,7 +64,7 @@ module Filmrolls
     def lens=(val)
       # TODO: this is hacky as f
       make = val.strip.split(/\s+/)[0]
-      model = val.strip[(make.length)..-1]
+      model = val.strip[(make.length)..]
       @file[:Lens] = val.strip
       @file[:LensMake] = make.strip
       @file[:LensModel] = model.strip
@@ -72,7 +72,7 @@ module Filmrolls
 
     def camera=(val)
       make = val.strip.split(/\s+/)[0]
-      model = val.strip[(make.length)..-1]
+      model = val.strip[(make.length)..]
       @file[:LocalizedCameraModel] = val.strip
       @file[:Make] = make.strip
       @file[:Model] = model.strip
@@ -88,9 +88,13 @@ module Filmrolls
     end
 
     def copyright=(val)
-      year = @file[:datetimeoriginal] ? @file[:datetimeoriginal].year :
-             @file[:datetimecreated] ? @file[:datetimecreated].year : DateTime.now.year
-      notice = (val % {year => year})
+      year =
+        if @file[:datetimeoriginal]
+          @file[:datetimeoriginal].year
+        else
+          @file[:datetimecreated] ? @file[:datetimecreated].year : DateTime.now.year
+        end
+      notice = format(val, year => year)
       @file[:Copyright] = notice
       @file[:CopyrightNotice] = notice
       @file[:Rights] = notice

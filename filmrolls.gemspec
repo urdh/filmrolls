@@ -12,11 +12,11 @@ Gem::Specification.new do |s|
   s.homepage    = 'https://github.com/urdh/filmrolls'
   s.license     = 'ISC'
 
-  s.description = <<-EOF
+  s.description = <<-DESCRIPTION
     This is a utility designed to read the XML files used by the Film Rolls
     iOS app, and enable batch EXIF tagging of scanned negatives in TIFF format
     based on the information in these XML files.
-  EOF
+  DESCRIPTION
 
   s.files = %w[
     CHANGELOG.md

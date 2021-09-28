@@ -41,8 +41,8 @@ module Filmrolls
             film: node.at_xpath('./title').text,
             speed: node.at_xpath('./speed').text.to_i,
             camera: node.at_xpath('./camera').text,
-            load: DateTime.iso8601(node.at_xpath('./load').text),
-            unload: DateTime.iso8601(node.at_xpath('./unload').text),
+            load: Time.iso8601(node.at_xpath('./load').text),
+            unload: Time.iso8601(node.at_xpath('./unload').text),
             frames: node.xpath('./frames/frame').map { |n| load_frame(n) }
           }
         end
@@ -54,7 +54,7 @@ module Filmrolls
             shutter_speed: node.at_xpath('./shutterSpeed').text.to_r,
             compensation: node.at_xpath('./compensation').text.to_f,
             accessory: node.at_xpath('./accessory').text,
-            date: DateTime.iso8601(node.at_xpath('./date').text),
+            date: Time.iso8601(node.at_xpath('./date').text),
             note: node.at_xpath('./note').text,
             position: Geokit::LatLng.new(
               node.at_xpath('./latitude').text.to_f,

@@ -12,6 +12,9 @@ AllCops:
     - '*.gemspec'
     - Rakefile
     - .simplecov
+  Exclude:
+    - vendor/**/*
+    - pkg/**/*
 
 Style/Copyright:
   Enabled: false
@@ -24,6 +27,15 @@ Style/MissingElse:
 
 Style/MethodCallWithArgsParentheses:
   Enabled: false
+
+Lint/ConstantResolution:
+  Enabled: false
+
+Lint/NumberConversion:
+  Enabled: false
+
+Lint/SymbolConversion:
+  EnforcedStyle: consistent
 
 Metrics/BlockLength:
   Exclude:

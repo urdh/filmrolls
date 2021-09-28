@@ -20,17 +20,17 @@ module Filmrolls
       command 'list-rolls' do |c|
         c.syntax      = 'filmrolls list-rolls [--rolls FILE]'
         c.summary     = 'List film rolls'
-        c.description = 'List ID and additional data for all film rolls ' \
-                        'in input.'
+        c.description = 'List ID and additional data for all film rolls in input.'
 
         c.action do |_args, _options|
-          rolls = get_rolls($rolls_file).map do |roll|
-            roll.merge(
-              frames: roll[:frames].length,
-              unload: roll[:unload].to_date,
-              load: roll[:load].to_date
-            )
-          end
+          rolls =
+            get_rolls($rolls_file).map do |roll|
+              roll.merge(
+                frames: roll[:frames].length,
+                unload: roll[:unload].to_date,
+                load: roll[:load].to_date
+              )
+            end
 
           unless rolls.empty?
             require 'terminal-table'
@@ -45,14 +45,15 @@ module Filmrolls
         c.syntax      = 'filmrolls list-frames [--rolls FILE] --id ID'
         c.summary     = 'List frames'
         c.description = 'List frames from film roll with ID in input.'
-        c.option '-i', '--id ID',   'Use data from roll with id ID'
+        c.option '-i', '--id ID', 'Use data from roll with id ID'
 
         c.action do |_args, options|
-          abort "A film roll ID must be supplied" if options.id.nil?
+          abort 'A film roll ID must be supplied' if options.id.nil?
 
-          roll = get_rolls($rolls_file).detect do |r|
-            r[:id] == options.id
-          end
+          roll =
+            get_rolls($rolls_file).find do |r|
+              r[:id] == options.id
+            end
 
           abort "Could not find film roll with ID #{options.id}" if roll.nil?
 
@@ -68,26 +69,24 @@ module Filmrolls
       command :tag do |c|
         c.syntax      = 'filmrolls tag [--dry-run] [--meta FILE] [--rolls FILE] --id ID IMAGE...'
         c.summary     = 'Write EXIF tags'
-        c.description = 'Write EXIF tags to a set of images using data from ' \
-                        'film roll with ID in input.'
+        c.description = 'Write EXIF tags to a set of images using data from film roll with ID in input.'
         c.option '-i', '--id ID',   'Use data from roll with id ID'
         c.option '-n', '--dry-run', "Don't actually modify any files"
 
         c.action do |args, options|
-          abort "A film roll ID must be supplied" if options.id.nil?
+          abort 'A film roll ID must be supplied' if options.id.nil?
 
-          roll = get_rolls($rolls_file).detect do |r|
-            r[:id] == options.id
-          end
+          roll =
+            get_rolls($rolls_file).find do |r|
+              r[:id] == options.id
+            end
 
           abort "Could not find film roll with ID #{options.id}" if roll.nil?
 
-          unless args.length == roll[:frames].length
-            abort "Expected #{roll[:frames].length} images, got #{args.length}"
-          end
+          abort "Expected #{roll[:frames].length} images, got #{args.length}" unless args.length == roll[:frames].length
 
           meta = get_metadata($yaml_file)
-          meta.each { |k, v| log k.to_s.gsub('_',' ').capitalize, v }
+          meta.each { |k, v| log k.to_s.gsub('_', ' ').capitalize, v }
 
           roll[:frames].zip(args).each do |frame, file|
             log 'Path', file
@@ -102,7 +101,7 @@ module Filmrolls
             negative.film = roll[:film]
             log 'ISO', roll[:speed]
             negative.speed = roll[:speed]
-            if frame[:shutter_speed] != 0 and frame[:aperture] != 0
+            if (frame[:shutter_speed] != 0) && (frame[:aperture] != 0)
               log 'Shutter speed', "#{frame[:shutter_speed]}s"
               negative.shutter_speed = frame[:shutter_speed]
               log 'Aperture', "ƒ/#{frame[:aperture]}"
@@ -129,10 +128,10 @@ module Filmrolls
         c.option '-n', '--dry-run', "Don't actually modify any files"
 
         c.action do |args, options|
-          abort "A YAML file must be supplied" if $yaml_file.nil?
+          abort 'A YAML file must be supplied' if $yaml_file.nil?
 
           meta = get_metadata($yaml_file)
-          meta.each { |k, v| log k.to_s.gsub('_',' ').capitalize, v }
+          meta.each { |k, v| log k.to_s.gsub('_', ' ').capitalize, v }
 
           args.each do |file|
             log 'Path', file
@@ -148,19 +147,15 @@ module Filmrolls
       private
 
       def get_rolls(file)
-        begin
-          Filmrolls::XMLFormat.load(file.nil? ? $stdin.read : File.read(file))[:rolls]
-        rescue SystemCallError => err
-          abort "Could not read input XML: #{err.message}"
-        end
+        Filmrolls::XMLFormat.load(file.nil? ? $stdin.read : File.read(file))[:rolls]
+      rescue SystemCallError => e
+        abort "Could not read input XML: #{e.message}"
       end
 
       def get_metadata(file)
-        begin
-          file.nil? ? Hash.new : Filmrolls::Metadata.load(File.read(file))
-        rescue SystemCallError => err
-          abort "Could not read input YAML: #{err.message}"
-        end
+        file.nil? ? {} : Filmrolls::Metadata.load(File.read(file))
+      rescue SystemCallError => e
+        abort "Could not read input YAML: #{e.message}"
       end
     end
   end

@@ -8,7 +8,7 @@ describe Filmrolls::Exiftool do
     vendored_version = ExiftoolVendored::VERSION
     executable_version = Gem::Version.new(Filmrolls::Exiftool.exiftool_version)
 
-    executable_version.must_equal vendored_version
+    _(executable_version).must_equal vendored_version
   end
 
   it 'should be able to load EXIF tags from TIFF files' do

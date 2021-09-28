@@ -13,7 +13,7 @@ jobs:
     name: Build & test
     strategy:
       matrix:
-        ruby: [2.5, 2.6, 2.7]
+        ruby: [3.0]
     steps:
       - uses: actions/checkout@v2
         with:
@@ -34,7 +34,7 @@ jobs:
         id: gem
       - run: sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace/@g' coverage/coverage.json
       - uses: sonarsource/sonarcloud-github-action@master
-        if: ${{ matrix.ruby == '2.7' }}
+        if: ${{ matrix.ruby == '3.0' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

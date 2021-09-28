@@ -3,11 +3,11 @@ PATH
   specs:
     filmrolls (0.2.1)
       commander (~> 4.4)
-      exiftool_vendored (~> 11)
+      exiftool_vendored (>= 11)
       geokit (~> 1.11)
       mini_exiftool (~> 2.8)
       nokogiri (~> 1.10)
-      terminal-table (~> 1.8)
+      terminal-table (~> 3.0)
 
 GEM
   remote: https://rubygems.org/
@@ -68,31 +68,31 @@ GEM
     rubocop-rake (0.6.0)
       rubocop (~> 1.0)
     ruby-progressbar (1.10.0)
-    simplecov (0.21.2)
+    simplecov (0.20.0)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
       simplecov_json_formatter (~> 0.1)
     simplecov-html (0.12.3)
     simplecov_json_formatter (0.1.3)
-    terminal-table (1.8.0)
-      unicode-display_width (~> 1.1, >= 1.1.1)
-    unicode-display_width (1.6.0)
+    terminal-table (3.0.2)
+      unicode-display_width (>= 1.1.1, < 3)
+    unicode-display_width (2.1.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler (~> 2)
+  bundler (~> 2.2)
   filmrolls!
   minitest (~> 5.8)
   minitest-reporters (~> 1.3)
-  rake (~> 13)
-  rdoc (~> 6)
-  ronn (~> 0.7)
+  rake (~> 13.0)
+  rdoc (~> 6.0)
+  ronn (~> 0.7.0)
   rubocop (~> 1.21)
-  rubocop-minitest (~> 0.15)
-  rubocop-rake (~> 0.6)
-  simplecov (~> 0.20)
+  rubocop-minitest (~> 0.15.0)
+  rubocop-rake (~> 0.6.0)
+  simplecov (~> 0.20.0)
 
 BUNDLED WITH
    2.2.28

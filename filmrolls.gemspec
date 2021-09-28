@@ -63,20 +63,20 @@ Gem::Specification.new do |s|
   ]
 
   s.add_dependency 'commander', ['~> 4.4']
-  s.add_dependency 'exiftool_vendored', ['~> 11']
+  s.add_dependency 'exiftool_vendored', ['>= 11']
   s.add_dependency 'geokit', ['~> 1.11']
   s.add_dependency 'mini_exiftool', ['~> 2.8']
   s.add_dependency 'nokogiri', ['~> 1.10']
-  s.add_dependency 'terminal-table', ['~> 1.8']
+  s.add_dependency 'terminal-table', ['~> 3.0']
 
-  s.add_development_dependency 'bundler', ['~> 2']
+  s.add_development_dependency 'bundler', ['~> 2.2']
   s.add_development_dependency 'minitest', ['~> 5.8']
   s.add_development_dependency 'minitest-reporters', ['~> 1.3']
-  s.add_development_dependency 'rake', '~> 13'
-  s.add_development_dependency 'rdoc', ['~> 6']
-  s.add_development_dependency 'ronn', ['~> 0.7']
+  s.add_development_dependency 'rake', '~> 13.0'
+  s.add_development_dependency 'rdoc', ['~> 6.0']
+  s.add_development_dependency 'ronn', ['~> 0.7.0']
   s.add_development_dependency 'rubocop', ['~> 1.21']
-  s.add_development_dependency 'rubocop-minitest', ['~> 0.15']
-  s.add_development_dependency 'rubocop-rake', ['~> 0.6']
-  s.add_development_dependency 'simplecov', ['~> 0.20']
+  s.add_development_dependency 'rubocop-minitest', ['~> 0.15.0']
+  s.add_development_dependency 'rubocop-rake', ['~> 0.6.0']
+  s.add_development_dependency 'simplecov', ['~> 0.20.0']
 end
